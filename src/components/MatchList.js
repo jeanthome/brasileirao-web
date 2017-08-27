@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 
-export default class App extends Component {
+class MatchList extends Component {
     render() {
         return (
             <div>
-                {this.props.children}
+                <h3>Lista de Jogos</h3>
             </div>
         );
     }
 }
+
+export default MatchList;
