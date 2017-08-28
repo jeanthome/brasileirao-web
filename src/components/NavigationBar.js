@@ -33,7 +33,7 @@ class NavigationBar extends Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <NavDropdown title="Cadastro">
+                        <NavDropdown title="Cadastro" id="dropdown-register">
                             <LinkContainer to="/cadastro/jogador">
                                 <MenuItem>Jogador</MenuItem>
                             </LinkContainer>
