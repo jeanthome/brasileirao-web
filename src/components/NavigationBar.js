@@ -32,6 +32,16 @@ class NavigationBar extends Component {
                             </LinkContainer>
                         </NavDropdown>
                     </Nav>
+                    <Nav pullRight>
+                        <NavDropdown title="Cadastro">
+                            <LinkContainer to="/cadastro/jogador">
+                                <MenuItem>Jogador</MenuItem>
+                            </LinkContainer>
+                            <LinkContainer to="/cadastro/partida">
+                                <MenuItem>Partida</MenuItem>
+                            </LinkContainer>
+                        </NavDropdown>
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         );
