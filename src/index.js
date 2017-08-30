@@ -11,7 +11,7 @@ import Home from './components/Home';
 import ClassificationTable from './components/ClassificationTable';
 import MatchList from './components/MatchList';
 import ClubPage from './components/ClubPage';
-import NewPlayerForm from './components/NewPlayerForm';
+import NewPlayerForm from './container/NewPlayerForm';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 

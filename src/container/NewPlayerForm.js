@@ -2,33 +2,51 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {fetchClubs} from '../actions/ClubActions';
 import {connect} from 'react-redux';
+import SelectInput from '../components/SelectInput';
 
 class NewPlayerForm extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.renderClubList = this.renderClubList.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentWillMount() {
         this.props.fetchClubs();
     }
 
+    onSubmit(values) {
+        console.log(values);
+    }
+
     render() {
 
         const {clubs} = this.props;
-        if (!clubs){
+
+        /* Verifica se já foi dado fetch nos clubes antes de tentar renderizar o formulário */
+        if (_.isEmpty(clubs)) {
             return (
-                <div>
+                <div className="col-md-6 col-md-offset-3 text-center">
                     Carregando...
                 </div>
             );
         }
 
+        /* Cria um array de objetos com atributos 'value' e 'label' para popular o componente
+        'SelectInput' */
+        const clubList = _.map(this.props.clubs, club => {
+            return {
+                value: club.identificator,
+                label: club.name
+            }
+        })
+
+        const {handleSubmit} = this.props;
+
         return (
             <div className="col-md-6 col-md-offset-3">
                 <div className="form-area">
-                    <form>
+                    <form onSubmit={handleSubmit(this.onSubmit)}>
                         <Field
                             label="Nome"
                             name="firstName"
@@ -70,12 +88,17 @@ class NewPlayerForm extends Component {
                         />
                         <Field
                             name="actualClub"
-                            component={this.renderClubList}
+                            component={SelectInput}
+                            options={clubList}
+                            placeholder="Clube atual"
                         />
                         <Field
                             name="biography"
                             component={this.renderFieldBiography}
                         />
+
+                        <button type="submit" className="btn btn-primary">Submit</button>
+
                     </form>
                 </div>
             </div>
@@ -96,7 +119,7 @@ class NewPlayerForm extends Component {
     }
 
     renderFieldPosition(field) {
-        return(
+        return (
             <div className="form-group">
                 <select className="form-control" {...field.input}>
                     <option value="" disabled defaultValue hidden>Posição</option>
@@ -114,7 +137,7 @@ class NewPlayerForm extends Component {
     }
 
     renderFieldBiography(field) {
-        return(
+        return (
             <div className="form-group">
               <textarea
                   className="form-control"
@@ -123,20 +146,6 @@ class NewPlayerForm extends Component {
                   rows="10"
                   {...field.input}>
               </textarea>
-            </div>
-        );
-    }
-
-    renderClubList(field) {
-        return(
-            <div className="form-group">
-                <select className="form-control" {...field.input}>
-                    <option value="" disabled defaultValue hidden>Clube atual</option>
-
-                    {_.map(this.props.clubs, club =>
-                        <option value={club.identificator} key={club.identificator}>{club.name}</option>
-                    )}
-                </select>
             </div>
         );
     }
