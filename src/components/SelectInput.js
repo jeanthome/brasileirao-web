@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import Select from 'react-select';
-//import 'react-select/dist/react-select.css';
+import React, {Component} from "react";
+import Select from "react-select";
 
 /**
  * Componente para integrar react-select e redux-form.
@@ -23,14 +22,25 @@ class SelectInput extends Component {
     }
 
     render() {
+
+        const {meta: {touched}, errorMessage} = this.props;
+        const hasError = (!this.props.input.value && touched);
+        const className = `form-group ${hasError ? 'has-error' : ''}`;
+        const selectClassName = `${hasError ? 'react-select-wrapper' : ''}`;
+
         return (
-            <div className="form-group">
-                <Select
-                    {...this.props}
-                    value={this.props.input.value}
-                    onBlur={() => this.props.input.onBlur(this.props.input.value)}
-                    onChange={this.onChange}
-                />
+            <div className={className}>
+                <div className={selectClassName}>
+                    <Select
+                        {...this.props}
+                        value={this.props.input.value}
+                        onBlur={() => this.props.input.onBlur(this.props.input.value)}
+                        onChange={this.onChange}
+                    />
+                </div>
+                <div className="help-block">
+                    {hasError ? errorMessage : ''}
+                </div>
             </div>
         );
     }

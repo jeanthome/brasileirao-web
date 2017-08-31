@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
-import {fetchClubs} from '../actions/ClubActions';
-import {connect} from 'react-redux';
-import SelectInput from '../components/SelectInput';
+import React, {Component} from "react";
+import {Field, reduxForm} from "redux-form";
+import {fetchClubs} from "../actions/ClubActions";
+import {insertPlayer} from "../actions/PlayerActions";
+import {connect} from "react-redux";
+import SelectInput from "../components/SelectInput";
+import {isInt} from "../utils/ValidationHelper";
 
 class NewPlayerForm extends Component {
 
@@ -16,7 +18,11 @@ class NewPlayerForm extends Component {
     }
 
     onSubmit(values) {
-        console.log(values);
+
+        this.props.insertPlayer(values, () => {
+            console.log("Player inserido!");
+            this.props.history.push("/");
+        });
     }
 
     render() {
@@ -33,7 +39,7 @@ class NewPlayerForm extends Component {
         }
 
         /* Cria um array de objetos com atributos 'value' e 'label' para popular o componente
-        'SelectInput' */
+         'SelectInput' */
         const clubList = _.map(this.props.clubs, club => {
             return {
                 value: club.identificator,
@@ -44,9 +50,11 @@ class NewPlayerForm extends Component {
         const {handleSubmit} = this.props;
 
         return (
+
             <div className="col-md-6 col-md-offset-3">
                 <div className="form-area">
                     <form onSubmit={handleSubmit(this.onSubmit)}>
+
                         <Field
                             label="Nome"
                             name="firstName"
@@ -83,22 +91,29 @@ class NewPlayerForm extends Component {
                             component={this.renderField}
                         />
                         <Field
-                            name="position"
+                            label="Nome do arquivo de imagem"
+                            name="photo"
+                            component={this.renderField}
+                        />
+                        <Field
+                            name="positionEnum"
                             component={this.renderFieldPosition}
                         />
                         <Field
-                            name="actualClub"
+                            name="actualClubId"
                             component={SelectInput}
                             options={clubList}
                             placeholder="Clube atual"
+                            errorMessage="Atributo 'Clube atual' não pode ficar vazio."
                         />
                         <Field
                             name="biography"
                             component={this.renderFieldBiography}
                         />
 
-                        <button type="submit" className="btn btn-primary">Submit</button>
-
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -106,14 +121,22 @@ class NewPlayerForm extends Component {
     }
 
     renderField(field) {
+
+        const {meta: {touched, error}} = field;
+        const className = `form-group ${touched && error ? 'has-error' : ''}`;
+
         return (
-            <div className="form-group">
+
+            <div className={className}>
                 <input
                     placeholder={field.label}
                     className="form-control"
                     type="text"
                     {...field.input}
                 />
+                <div className="help-block">
+                    {touched ? error : ''}
+                </div>
             </div>
         );
     }
@@ -150,6 +173,33 @@ class NewPlayerForm extends Component {
         );
     }
 }
+function validate(values) {
+    const errors = {};
+
+    if (!values.firstName) {
+        errors.firstName = "Atributo 'Nome' não pode ficar vazio.";
+    }
+
+    if (!values.lastName) {
+        errors.lastName = "Atributo 'Sobrenome' não pode ficar vazio.";
+    }
+
+    if (!values.displayName) {
+        errors.displayName = "Atributo 'Nome de exibição não pode ficar vazio.";
+    }
+
+    if (!values.birthDate) {
+        errors.birthDate = "Atributo 'Data de nascimento' não podeficar vazio."
+    }
+
+    if (!values.number) {
+        errors.number = "Atributo 'Número da camisa' não pode ficar vazio."
+    } else if (!isInt(values.number)) {
+        errors.number = `'${values.number}' não é um número de camisa válido.`
+    }
+
+    return errors;
+}
 
 function mapStateToProps(state) {
     return {
@@ -158,8 +208,9 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
+    validate,
     form: 'NewPlayerForm',
     fields: []
 })(
-    connect(mapStateToProps, {fetchClubs})(NewPlayerForm)
+    connect(mapStateToProps, {fetchClubs, insertPlayer})(NewPlayerForm)
 );
