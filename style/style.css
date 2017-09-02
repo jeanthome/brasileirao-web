@@ -2,3 +2,73 @@
 .react-select-wrapper .Select-control{
     border: 1px solid #a94442;
 }
+
+.margin-to-navbar {
+    margin-top: 65px;
+}
+
+.list > li {
+
+}
+
+.list  img {
+    width: 60px;
+    height: 60px;
+}
+
+.club-list > li {
+    display: inline-block;
+    width: 200px;
+    height: 160px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    position: relative;
+    margin: 10px;
+}
+
+.club-list .club-color-bg {
+    background-color: red;
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.club-list .club-badge-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+}
+
+.club-list .club-badge-content{
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.club-list .club-name-wrapper {
+    color: white;
+    width: 100%;
+}
+
+.club-list .club-name-wrapper > h4 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.club-list .club-name-wrapper > h4 {
+    margin-top: 20px;
+}

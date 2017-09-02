@@ -12,22 +12,26 @@ import ClassificationTable from './components/ClassificationTable';
 import MatchList from './components/MatchList';
 import ClubPage from './components/ClubPage';
 import NewPlayerForm from './container/NewPlayerForm';
+import ClubList from './container/ClubList';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
-
         <BrowserRouter>
             <div className="row">
                 <NavigationBar/>
-                <Switch>
-                    <Route path="/classificacao" component={ClassificationTable}/>
-                    <Route path="/jogos" component={MatchList}/>
-                    <Route path="/times/:name" component={ClubPage}/>
-                    <Route path="/cadastro/jogador" component={NewPlayerForm}/>
-                    <Route path="/" component={Home}/>
-                </Switch>
+                <div className="margin-to-navbar">
+                    <Switch>
+                        <Route path="/classificacao" component={ClassificationTable}/>
+                        <Route path="/jogos" component={MatchList}/>
+                        <Route path="/times/:name" component={ClubPage}/>
+                        <Route path="/times" component={ClubList}/>
+                        <Route path="/cadastro/jogador" component={NewPlayerForm}/>
+                        <Route path="/" component={Home}/>
+                    </Switch>
+                </div>
+
             </div>
         </BrowserRouter>
     </Provider>

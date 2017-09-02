@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {Nav, Navbar, MenuItem, NavDropdown, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
+
 class NavigationBar extends Component {
 
     render() {
         return (
-            <Navbar inverse collapseOnSelect>
+            <Navbar inverse collapseOnSelect fixedTop>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <LinkContainer to="/">
@@ -23,14 +24,9 @@ class NavigationBar extends Component {
                         <LinkContainer to="/jogos" activeClassName="active">
                             <NavItem>Lista de jogos</NavItem>
                         </LinkContainer>
-                        <NavDropdown eventKey={3} title="Times" id="basic-nav-dropdown">
-                            <LinkContainer to="/times/flamengo">
-                                <MenuItem>Flamengo</MenuItem>
-                            </LinkContainer>
-                            <LinkContainer to="/times/corinthians">
-                                <MenuItem>Corinthians</MenuItem>
-                            </LinkContainer>
-                        </NavDropdown>
+                        <LinkContainer to="/times" activeClassName="active">
+                            <NavItem>Times</NavItem>
+                        </LinkContainer>
                     </Nav>
                     <Nav pullRight>
                         <NavDropdown title="Cadastro" id="dropdown-register">
