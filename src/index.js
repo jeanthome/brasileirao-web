@@ -13,6 +13,7 @@ import MatchList from './components/MatchList';
 import ClubPage from './components/ClubPage';
 import NewPlayerForm from './container/NewPlayerForm';
 import ClubList from './container/ClubList';
+import NewMatchForm from './container/NewMatchForm';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -28,6 +29,7 @@ ReactDOM.render(
                         <Route path="/times/:name" component={ClubPage}/>
                         <Route path="/times" component={ClubList}/>
                         <Route path="/cadastro/jogador" component={NewPlayerForm}/>
+                        <Route path="/cadastro/partida" component={NewMatchForm}/>
                         <Route path="/" component={Home}/>
                     </Switch>
                 </div>

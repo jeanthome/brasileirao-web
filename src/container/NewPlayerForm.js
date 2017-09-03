@@ -56,12 +56,12 @@ class NewPlayerForm extends Component {
                     <form onSubmit={handleSubmit(this.onSubmit)}>
 
                         <Field
-                            label="Nome"
+                            placeholder="Nome"
                             name="firstName"
                             component={this.renderField}
                         />
                         <Field
-                            label="Sobrenome"
+                            placeholder="Sobrenome"
                             name="lastName"
                             component={this.renderField}
                         />
@@ -71,27 +71,27 @@ class NewPlayerForm extends Component {
                             component={this.renderField}
                         />
                         <Field
-                            label="Data de nascimento"
+                            placeholder="Data de nascimento"
                             name="birthDate"
                             component={this.renderField}
                         />
                         <Field
-                            label="Altura"
+                            placeholder="Altura"
                             name="height"
                             component={this.renderField}
                         />
                         <Field
-                            label="Nacionalidade"
+                            placeholder="Nacionalidade"
                             name="nationality"
                             component={this.renderField}
                         />
                         <Field
-                            label="Número da camisa"
+                            placeholder="Número da camisa"
                             name="number"
                             component={this.renderField}
                         />
                         <Field
-                            label="Nome do arquivo de imagem"
+                            placeholder="Nome do arquivo de imagem"
                             name="photo"
                             component={this.renderField}
                         />
@@ -112,7 +112,7 @@ class NewPlayerForm extends Component {
                         />
 
                         <div className="form-group">
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-primary">Salvar</button>
                         </div>
                     </form>
                 </div>
@@ -129,7 +129,7 @@ class NewPlayerForm extends Component {
 
             <div className={className}>
                 <input
-                    placeholder={field.label}
+                    placeholder={field.placeholder}
                     className="form-control"
                     type="text"
                     {...field.input}

@@ -7,7 +7,6 @@ class ClubCard extends Component {
 
     render() {
 
-        console.log(this.props);
         return (
             <div className="text-center">
                 <div className="club-badge-wrapper">

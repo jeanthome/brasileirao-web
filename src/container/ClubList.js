@@ -15,13 +15,12 @@ class ClubList extends Component {
     }
 
     renderClubCard(club) {
+        /*TODO Inserir link correto*/
         return (
             <li key={club.identificator}>
-                /*TODO Inserir link correto*/
                 <Link to="/classificacao">
                     <ClubCard club={club}/>
                 </Link>
-
             </li>
         );
     }
@@ -30,7 +29,7 @@ class ClubList extends Component {
 
         const {clubs} = this.props;
 
-        /* Verifica se já foi dado fetch nos clubes antes de tentar renderizar o formulário */
+        /* Verifica se já foi dado fetch nos clubes antes de tentar renderizar a lista de clubes */
         if (_.isEmpty(clubs)) {
             return (
                 <div className="col-md-6 col-md-offset-3 text-center">
@@ -39,10 +38,7 @@ class ClubList extends Component {
             );
         }
 
-        console.log(clubs);
-
         return (
-
             <div className="row">
                 <ul className="club-list">
                     {_.map(clubs, club => this.renderClubCard(club))}
