@@ -9,7 +9,7 @@ import reducers from './reducers';
 import NavigationBar from "./components/NavigationBar";
 import Home from './components/Home';
 import ClassificationTable from './components/ClassificationTable';
-import MatchList from './components/MatchList';
+import MatchList from './container/MatchList';
 import ClubPage from './components/ClubPage';
 import NewPlayerForm from './container/NewPlayerForm';
 import ClubList from './container/ClubList';

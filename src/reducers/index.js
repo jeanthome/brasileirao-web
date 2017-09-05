@@ -3,13 +3,15 @@ import {reducer as formReducer} from 'redux-form';
 import ClubReducer from './ClubReducer';
 import PlayerReducer from './PlayerReducer';
 import NewMatchReducer from './NewMatchReducer';
+import MatchReducer from './MatchReducer';
 
 
 const rootReducer = combineReducers({
     form: formReducer,
     players: PlayerReducer,
     clubs: ClubReducer,
-    newMatch: NewMatchReducer
+    newMatch: NewMatchReducer,
+    matches: MatchReducer
 });
 
 export default rootReducer;
