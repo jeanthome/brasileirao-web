@@ -3,6 +3,7 @@ import {fetchClubs} from "../actions/ClubActions";
 import {connect} from "react-redux";
 import ClubCard from "../components/ClubCard";
 import {Link} from "react-router-dom";
+import {Col, Row, PageHeader} from "react-bootstrap";
 
 class ClubList extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class ClubList extends Component {
         }
 
         return (
-            <div className="row">
+            <div className="row margin-to-navbar">
                 <ul className="club-list">
                     {_.map(clubs, club => this.renderClubCard(club))}
                 </ul>

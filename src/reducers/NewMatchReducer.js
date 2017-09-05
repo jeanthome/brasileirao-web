@@ -1,4 +1,4 @@
-import {FETCH_STADIUMS} from '../actions/NewMatchActions';
+import {FETCH_STADIUMS, INSERT_MATCH} from '../actions/NewMatchActions';
 
 export default function (state = {}, action) {
     switch (action.type) {

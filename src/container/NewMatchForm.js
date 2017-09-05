@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import SelectInput from "../components/SelectInput";
-import {fetchStadiums} from "../actions/NewMatchActions";
+import {fetchStadiums, insertMatch} from "../actions/NewMatchActions";
 import {fetchClubs} from "../actions/ClubActions";
-import {Col, Row} from "react-bootstrap";
+import {Col, Row, PageHeader} from "react-bootstrap";
 import {isInt, isValidRoundNumber} from "../utils/ValidationHelper";
 import {stringToDate} from '../utils/ConvertHelper';
 
@@ -23,6 +23,10 @@ class NewMatchForm extends Component {
 
     onSubmit(values) {
         console.log(values);
+        this.props.insertMatch(values, () => {
+            console.log("Partida inserida!");
+            this.props.history.push("/");
+        });
     }
 
     render() {
@@ -34,7 +38,7 @@ class NewMatchForm extends Component {
         if (_.isEmpty(stadiums) || _.isEmpty(clubs)) {
             return (
                 <div className="col-md-6 col-md-offset-3 text-center">
-                    Carregando...
+                    <h4>Carregando...</h4>
                 </div>
             );
         }
@@ -51,63 +55,71 @@ class NewMatchForm extends Component {
         })
 
         return (
-            <Row>
-                <Col md={8} mdOffset={2}>
-                    <div className="form-area">
-                        <form onSubmit={handleSubmit(this.onSubmit)}>
-                            <Row>
-                                <Col md={2}>
-                                    <Field
-                                        name="roundNumber"
-                                        placeholder="Rodada"
-                                        component={this.renderField}
-                                    />
-                                </Col>
-                                <Col md={4}>
-                                    <Field
-                                        placeholder="Data da partida"
-                                        name="kickOff"
-                                        component={this.renderField}
-                                    />
-                                </Col>
-                                <Col md={6}>
-                                    <Field
-                                        name="stadiumEnum"
-                                        component={SelectInput}
-                                        options={stadiums}
-                                        placeholder="Estádio"
-                                        errorMessage="Atributo 'Estádio' não pode ficar vazio"
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={6}>
-                                    <Field
-                                        name="homeClub"
-                                        component={SelectInput}
-                                        options={clubList}
-                                        placeholder="Clube mandante"
-                                        errorMessage="Atributo 'Clube mandante' não pode ficar vazio."
-                                    />
-                                </Col>
-                                <Col md={6}>
-                                    <Field
-                                        name="visitorClub"
-                                        component={SelectInput}
-                                        options={clubList}
-                                        placeholder="Clube visitante"
-                                        errorMessage="Atributo 'Clube visitante' não pode ficar vazio."
-                                    />
-                                </Col>
-                            </Row>
+            <div className="form-margin-to-navbar">
+                <Row>
+                    <Col md={8} mdOffset={2}>
+                        <PageHeader>
+                            Cadastro de partida
+                        </PageHeader>
+                    </Col>
+                    <Col md={8} mdOffset={2}>
+                        <div className="form-area">
+                            <form onSubmit={handleSubmit(this.onSubmit)}>
+                                <Row>
+                                    <Col md={2}>
+                                        <Field
+                                            name="roundNumber"
+                                            placeholder="Rodada"
+                                            component={this.renderField}
+                                        />
+                                    </Col>
+                                    <Col md={4}>
+                                        <Field
+                                            placeholder="Data da partida"
+                                            name="kickOff"
+                                            component={this.renderField}
+                                        />
+                                    </Col>
+                                    <Col md={6}>
+                                        <Field
+                                            name="stadiumEnum"
+                                            component={SelectInput}
+                                            options={stadiums}
+                                            placeholder="Estádio"
+                                            errorMessage="Atributo 'Estádio' não pode ficar vazio"
+                                        />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <Field
+                                            name="homeClubId"
+                                            component={SelectInput}
+                                            options={clubList}
+                                            placeholder="Clube mandante"
+                                            errorMessage="Atributo 'Clube mandante' não pode ficar vazio."
+                                        />
+                                    </Col>
+                                    <Col md={6}>
+                                        <Field
+                                            name="visitorClubId"
+                                            component={SelectInput}
+                                            options={clubList}
+                                            placeholder="Clube visitante"
+                                            errorMessage="Atributo 'Clube visitante' não pode ficar vazio."
+                                        />
+                                    </Col>
+                                </Row>
 
-                            <div className="form-group">
-                                <button type="submit" className="btn btn-primary">Salvar</button>
-                            </div>
-                        </form>
-                    </div>
-                </Col>
-            </Row>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-primary">Salvar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </Col>
+                </Row>
+            </div>
         );
     }
 
@@ -159,5 +171,5 @@ export default reduxForm({
     validate,
     form: 'NewMatch'
 })(
-    connect(mapStateToProps, {fetchStadiums, fetchClubs})(NewMatchForm)
+    connect(mapStateToProps, {fetchStadiums, fetchClubs, insertMatch})(NewMatchForm)
 );

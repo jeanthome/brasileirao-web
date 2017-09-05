@@ -5,6 +5,7 @@ import {insertPlayer} from "../actions/PlayerActions";
 import {connect} from "react-redux";
 import SelectInput from "../components/SelectInput";
 import {isInt} from "../utils/ValidationHelper";
+import {Col, Row, PageHeader} from "react-bootstrap";
 
 class NewPlayerForm extends Component {
 
@@ -33,7 +34,7 @@ class NewPlayerForm extends Component {
         if (_.isEmpty(clubs)) {
             return (
                 <div className="col-md-6 col-md-offset-3 text-center">
-                    Carregando...
+                    <h4>Carregando...</h4>
                 </div>
             );
         }
@@ -51,71 +52,80 @@ class NewPlayerForm extends Component {
 
         return (
 
-            <div className="col-md-6 col-md-offset-3">
-                <div className="form-area">
-                    <form onSubmit={handleSubmit(this.onSubmit)}>
+            <div className="form-margin-to-navbar">
+                <Row>
+                    <Col md={8} mdOffset={2}>
+                        <PageHeader>
+                            Cadastro de jogador
+                        </PageHeader>
+                    </Col>
+                    <Col md={8} mdOffset={2}>
+                        <div className="form-area">
+                            <form onSubmit={handleSubmit(this.onSubmit)}>
 
-                        <Field
-                            placeholder="Nome"
-                            name="firstName"
-                            component={this.renderField}
-                        />
-                        <Field
-                            placeholder="Sobrenome"
-                            name="lastName"
-                            component={this.renderField}
-                        />
-                        <Field
-                            label="Nome de exibição"
-                            name="displayName"
-                            component={this.renderField}
-                        />
-                        <Field
-                            placeholder="Data de nascimento"
-                            name="birthDate"
-                            component={this.renderField}
-                        />
-                        <Field
-                            placeholder="Altura"
-                            name="height"
-                            component={this.renderField}
-                        />
-                        <Field
-                            placeholder="Nacionalidade"
-                            name="nationality"
-                            component={this.renderField}
-                        />
-                        <Field
-                            placeholder="Número da camisa"
-                            name="number"
-                            component={this.renderField}
-                        />
-                        <Field
-                            placeholder="Nome do arquivo de imagem"
-                            name="photo"
-                            component={this.renderField}
-                        />
-                        <Field
-                            name="positionEnum"
-                            component={this.renderFieldPosition}
-                        />
-                        <Field
-                            name="actualClubId"
-                            component={SelectInput}
-                            options={clubList}
-                            placeholder="Clube atual"
-                            errorMessage="Atributo 'Clube atual' não pode ficar vazio."
-                        />
-                        <Field
-                            name="biography"
-                            component={this.renderFieldBiography}
-                        />
+                                <Field
+                                    placeholder="Nome"
+                                    name="firstName"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    placeholder="Sobrenome"
+                                    name="lastName"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    placeholder="Nome de exibição"
+                                    name="displayName"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    placeholder="Data de nascimento"
+                                    name="birthDate"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    placeholder="Altura"
+                                    name="height"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    placeholder="Nacionalidade"
+                                    name="nationality"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    placeholder="Número da camisa"
+                                    name="number"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    placeholder="Nome do arquivo de imagem"
+                                    name="photo"
+                                    component={this.renderField}
+                                />
+                                <Field
+                                    name="positionEnum"
+                                    component={this.renderFieldPosition}
+                                />
+                                <Field
+                                    name="actualClubId"
+                                    component={SelectInput}
+                                    options={clubList}
+                                    placeholder="Clube atual"
+                                    errorMessage="Atributo 'Clube atual' não pode ficar vazio."
+                                />
+                                <Field
+                                    name="biography"
+                                    component={this.renderFieldBiography}
+                                />
 
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-primary">Salvar</button>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-primary">Salvar</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
+                    </Col>
+                </Row>
             </div>
         );
     }

@@ -22,7 +22,6 @@ ReactDOM.render(
         <BrowserRouter>
             <div className="row">
                 <NavigationBar/>
-                <div className="margin-to-navbar">
                     <Switch>
                         <Route path="/classificacao" component={ClassificationTable}/>
                         <Route path="/jogos" component={MatchList}/>
@@ -32,8 +31,6 @@ ReactDOM.render(
                         <Route path="/cadastro/partida" component={NewMatchForm}/>
                         <Route path="/" component={Home}/>
                     </Switch>
-                </div>
-
             </div>
         </BrowserRouter>
     </Provider>
