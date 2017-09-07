@@ -1,9 +1,8 @@
 import axios from 'axios';
+import {ROOT_URL} from '../utils/Constants';
+
 export const FETCH_STADIUMS = 'FETCH_STADIUMS';
 export const INSERT_MATCH = 'INSERT_MATCH';
-
-const ROOT_URL = 'http://localhost:8090';
-
 export function fetchStadiums() {
 
     const request = axios.get(`${ROOT_URL}/matches/stadiums`);

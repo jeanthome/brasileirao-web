@@ -8,7 +8,7 @@ class MatchListPagination extends Component {
     constructor(props){
         super(props);
         this.state = {
-            activePage : 22
+            activePage : 1
         }
 
         this.handleSelect = this.handleSelect.bind(this);

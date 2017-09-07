@@ -1,8 +1,7 @@
 import axios from "axios";
+import {ROOT_URL} from '../utils/Constants';
+
 export const FETCH_MATCHES = 'FETCH_MATCHES';
-
-
-const ROOT_URL = 'http://localhost:8090';
 
 export function fetchMatchesInRound(roundNumber) {
 

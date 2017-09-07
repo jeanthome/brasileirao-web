@@ -1,8 +1,7 @@
 import axios from 'axios';
+import {ROOT_URL} from '../utils/Constants';
 
 export const FETCH_CLUBS = 'FETCH_CLUBS';
-
-const ROOT_URL = 'http://localhost:8090';
 
 export function fetchClubs() {
 

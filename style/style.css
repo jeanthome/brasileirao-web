@@ -76,3 +76,87 @@
 .club-list .club-name-wrapper > h4 {
     margin-top: 20px;
 }
+
+
+.match-card-wrapper {
+    display: inline-block;
+    width: 400px;
+    margin: 5px 0;
+}
+
+.match-card {
+    background-color: #fff;
+    width: 100%;
+}
+
+.match-card-header {
+    height: 40px;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-radius: 4px 4px 0 0;
+    display: table;
+}
+
+.match-card-header-content {
+    display: table-cell;
+    vertical-align: middle;
+    color: #666;
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.match-card-body {
+    padding: 15px;
+    display: table;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+
+.match-card-club-item {
+    width: 35%;
+    height: 40px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.match-card-club-item > img{
+    height: 40px;
+}
+
+.match-card-club-abbreviation {
+    display: inline-block;
+    font-weight: 300;
+    font-size: 18px;
+    width: 50%;
+}
+
+.match-card-club-abbreviation-home {
+    padding: 0 15px 0 0;
+}
+
+.match-card-club-abbreviation-visitor {
+    padding: 0 0 0 15px;
+}
+
+.match-card-club-badge {
+    display: inline-block;
+}
+
+.match-card-club-badge > img{
+    height: 40px;
+}
+
+.match-card-score {
+    width: 30%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.match-card-score > h3{
+    margin: 0px;
+}

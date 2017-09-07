@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {stringToDate} from '../utils/ConvertHelper';
-export const INSERT_PLAYER = 'INSERT_PLAYER';
+import {ROOT_URL} from '../utils/Constants';
 
-const ROOT_URL = 'http://localhost:8090';
+export const INSERT_PLAYER = 'INSERT_PLAYER';
 
 export function insertPlayer(values, callback) {
 
