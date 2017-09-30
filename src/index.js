@@ -14,6 +14,7 @@ import ClubPage from './components/ClubPage';
 import NewPlayerForm from './container/NewPlayerForm';
 import ClubList from './container/ClubList';
 import NewMatchForm from './container/NewMatchForm';
+import MatchDetails from './container/MatchDetails';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -24,6 +25,7 @@ ReactDOM.render(
                 <NavigationBar/>
                     <Switch>
                         <Route path="/classificacao" component={ClassificationTable}/>
+                        <Route path="/jogos/:id" component={MatchDetails}/>
                         <Route path="/jogos" component={MatchList}/>
                         <Route path="/times/:name" component={ClubPage}/>
                         <Route path="/times" component={ClubList}/>

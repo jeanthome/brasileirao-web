@@ -19,11 +19,8 @@ class MatchList extends Component {
 
     renderMatchCards() {
         return _.map(this.props.matches.matchList, match => {
-            console.log(match);
-
-            const {homeClub, visitorClub} = match;
             return (
-                <MatchCard match={match}/>
+                <MatchCard match={match} key={match.identifier}/>
             );
         });
     }
@@ -37,8 +34,6 @@ class MatchList extends Component {
                 <h3>Carregando</h3>
             );
         }
-
-        console.log(matches);
 
         return (
             <div className="margin-to-navbar text-center">

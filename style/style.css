@@ -113,6 +113,7 @@
     border: 1px solid #ddd;
     border-top: none;
     border-radius: 0 0 4px 4px;
+    cursor: pointer;
 }
 
 .match-card-club-item {
@@ -132,6 +133,7 @@
     font-weight: 300;
     font-size: 18px;
     width: 50%;
+    vertical-align: middle;
 }
 
 .match-card-club-abbreviation-home {
@@ -159,4 +161,55 @@
 
 .match-card-score > h3{
     margin: 0px;
+}
+
+
+/* MatchDetails*/
+
+.score{
+    display: table;
+}
+
+.score .col-md-5 {
+    float: none;
+}
+
+.score-item{
+    float: none; !important;
+    display: table-cell;
+    vertical-align: middle;
+    height: 100px;
+}
+
+.score-middle{
+    text-align: center;
+}
+
+.score-middle  > span{
+    font-size: 18px;
+}
+
+.home-club-name{
+    line-height: 60px;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.visitor-club-name{
+    line-height: 60px;
+    float: left;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.score-separator{
+    display:table;
+    line-height: 60px;
+}
+
+.score-home-goals-wrapper, .score-visitor-goals-wrapper {
+    font-size: 30px;
+    line-height: 60px;
+    font-weight: bold;
 }
