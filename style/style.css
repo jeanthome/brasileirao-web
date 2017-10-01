@@ -7,6 +7,8 @@
     margin-top: 65px;
 }
 
+
+
 .form-margin-to-navbar {
     margin-top: 30px;
 }
@@ -166,11 +168,16 @@
 
 /* MatchDetails*/
 
+
 .score{
     display: table;
 }
 
-.score .col-md-5 {
+.score .col-md-5{
+    float: none;
+}
+
+.score .col-md-2{
     float: none;
 }
 
@@ -183,10 +190,15 @@
 
 .score-middle{
     text-align: center;
+    display: table;
 }
 
 .score-middle  > span{
     font-size: 18px;
+}
+
+.club-badge > img {
+    height: 70px;
 }
 
 .home-club-name{
@@ -206,10 +218,17 @@
 .score-separator{
     display:table;
     line-height: 60px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .score-home-goals-wrapper, .score-visitor-goals-wrapper {
-    font-size: 30px;
+    font-size: 80px;
     line-height: 60px;
-    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.match-details-hr {
+    margin-top: 10px;
 }

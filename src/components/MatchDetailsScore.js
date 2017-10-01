@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Row} from "react-bootstrap";
+import {ROOT_URL} from "../utils/Constants";
 
 
 
@@ -13,30 +14,44 @@ class MatchDetailsScore extends Component {
     render(){
 
         const {match} = this.props;
-        console.log("Score - ", match);
+        const {homeClub, visitorClub} = match;
         return (
 
             <Row>
                 <Col md={12} className="score">
                     <Col md={5} className="score-item">
                         <Col md={9} >
-                            <span className="home-club-name">{match.homeClub.name}</span>
+                            <span className="home-club-name">{homeClub.name}</span>
                         </Col>
-                        <Col md={3}>
-
+                        <Col md={3} className="club-badge">
+                            <img src={`${ROOT_URL}/clubs/${homeClub.identificator}/badge`}/>
                         </Col>
 
                     </Col>
                     <Col md={2} className="score-item">
 
+                        <div className="score-middle">
+                            <Col md={4} className="score-home-goals-wrapper">
+                                <span id="score-home-goals">{match.homeClubGoals.length}</span>
+                            </Col>
+
+                            <Col md={2} className="score-separator">
+                                <span>X</span>
+                            </Col>
+                            <Col md={4} className="score-visitor-goals-wrapper">
+                                <span id="score-visitor-goals">{match.visitorClubGoals.length}</span>
+                            </Col>
+                        </div>
                     </Col>
                     <Col md={5} className="score-item">
-                        <Col md={9} >
-                            <span className="home-club-name">{match.visitorClub.name}</span>
-                        </Col>
-                        <Col md={3}>
 
+                        <Col md={3} className="club-badge">
+                            <img src={`${ROOT_URL}/clubs/${visitorClub.identificator}/badge`}/>
                         </Col>
+                        <Col md={9} >
+                            <span className="visitor-club-name">{visitorClub.name}</span>
+                        </Col>
+
                     </Col>
                 </Col>
             </Row>
@@ -44,6 +59,5 @@ class MatchDetailsScore extends Component {
         )
     }
 }
-
 
 export default MatchDetailsScore;

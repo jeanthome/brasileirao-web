@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
-import MatchDetailsScore from '../components/MatchDetailsScore';
+import React, {Component} from "react";
+import MatchDetailsScore from "../components/MatchDetailsScore";
 
-import {selectMatchToDetail} from "../actions/MatchActions";
+import {fetchMatch} from "../actions/MatchActions";
 
 import {connect} from "react-redux";
-
 
 class MatchDetails extends Component {
 
@@ -12,20 +11,20 @@ class MatchDetails extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
+
         const {id} = this.props.match.params;
-        console.log(id);
+        /*Busca os detalhes da partida.*/
+        this.props.fetchMatch(id);
     }
 
     render() {
 
-        const {id} = this.props.match.params;
+        const {matchToDetail} = this.props;
 
-        const match = this.props.selectedMatch;
-
-        if (!match) {
+        if (!matchToDetail) {
             return (
-                <div>
+                <div className="margin-to-navbar text-center">
                     <h3>Carregando...</h3>
                 </div>
             )
@@ -33,21 +32,18 @@ class MatchDetails extends Component {
 
         return (
             <div className="margin-to-navbar text-center">
-                <MatchDetailsScore match={match}/>
-                <hr />
+                <MatchDetailsScore match={matchToDetail}/>
+                <hr className="match-details-hr"/>
             </div>
         )
-
     }
 }
 
+function mapStateToProps({matches}) {
 
-function mapStateToProps({matches}, ownProps) {
-
-    console.log(matches);
     return {
-        selectedMatch: matches.matchList[ownProps.match.params.id]
+        matchToDetail: matches.matchToDetail
     };
 }
 
-export default connect(mapStateToProps, {selectMatchToDetail})(MatchDetails);
+export default connect(mapStateToProps, {fetchMatch})(MatchDetails);
