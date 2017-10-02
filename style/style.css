@@ -92,10 +92,7 @@
 }
 
 .match-card-header {
-    height: 40px;
     width: 100%;
-    border: 1px solid #dddddd;
-    border-radius: 4px 4px 0 0;
     display: table;
 }
 
@@ -109,12 +106,8 @@
 }
 
 .match-card-body {
-    padding: 15px;
     display: table;
     width: 100%;
-    border: 1px solid #ddd;
-    border-top: none;
-    border-radius: 0 0 4px 4px;
     cursor: pointer;
 }
 
@@ -231,4 +224,77 @@
 
 .match-details-hr {
     margin-top: 10px;
+}
+
+
+
+/*MatchDetailsLineUp*/
+
+.line-up-player-status{
+    color: grey;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+
+/*LineUp*/
+
+.line-up > list-group-item{
+    line-height: 12px;
+    padding: 5px 15px;
+}
+
+.line-up-item{
+    padding-right: 0px;
+    padding-left: 0px;
+    display: table-cell;
+    float: none;
+}
+
+.list-group-item{
+    line-height: 12px;
+    padding: 5px 15px;
+}
+
+/*LineUpItem*/
+
+.line-up-name-and-position-wrapper {
+    padding-right: 0px;
+    padding-left: 0px;
+    display: table-cell;
+    float: none;
+}
+
+.line-up-name-and-position-wrapper > div {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.player-name-wrapper{
+    padding-bottom: 5px;
+
+}
+
+.player-name{
+    font-weight: 400;
+}
+
+.player-number-wrapper{
+    color: grey;
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
+}
+
+.player-number{
+    font-weight: 400;
+}
+
+.player-position{
+    color: grey;
+    font-size: 11px;
+}
+
+hr{
+    margin-top: 0px;
 }

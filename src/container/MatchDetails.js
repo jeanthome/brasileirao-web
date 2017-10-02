@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import MatchDetailsScore from "../components/MatchDetailsScore";
+import MatchDetailsContent from "../components/MatchDetailsContent";
 
 import {fetchMatch} from "../actions/MatchActions";
 
@@ -31,9 +32,10 @@ class MatchDetails extends Component {
         }
 
         return (
-            <div className="margin-to-navbar text-center">
+            <div className="margin-to-navbar">
                 <MatchDetailsScore match={matchToDetail}/>
                 <hr className="match-details-hr"/>
+                <MatchDetailsContent match={matchToDetail}/>
             </div>
         )
     }
