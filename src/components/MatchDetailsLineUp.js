@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Col, Panel, Row, Button, Collapse} from "react-bootstrap";
+import {Col, Panel, Row, Button, Collapse, DropdownButton, MenuItem} from "react-bootstrap";
 import LineUp from "./LineUp";
 
 class MatchDetailsLineUp extends Component {
@@ -34,6 +34,35 @@ class MatchDetailsLineUp extends Component {
             <Row>
                 <Col md={6} mdOffset={3}>
                     <Panel header={panelTitle}>
+                        <Row>
+                            <Col md={6}>
+                                <DropdownButton
+                                    bsStyle="default"
+                                    title="Ações referentes ao mandante"
+                                    id="drop-down-home-club">
+                                    <MenuItem>Selecionar jogadores titulares</MenuItem>
+                                    <MenuItem>Selecionar jogadores reservas</MenuItem>
+                                    <MenuItem divider/>
+                                    <MenuItem>Inserir gol</MenuItem>
+                                    <MenuItem>Inserir cartão</MenuItem>
+                                    <MenuItem>Inserir substituição</MenuItem>
+                                </DropdownButton>
+                            </Col>
+                            <Col md={6}>
+                                <DropdownButton
+                                    bsStyle="default"
+                                    title="Ações referentes ao visitante"
+                                    id="drop-down-visitor-club">
+                                    <MenuItem>Selecionar jogadores titulares</MenuItem>
+                                    <MenuItem>Selecionar jogadores reservas</MenuItem>
+                                    <MenuItem divider/>
+                                    <MenuItem>Inserir gol</MenuItem>
+                                    <MenuItem>Inserir cartão</MenuItem>
+                                    <MenuItem>Inserir substituição</MenuItem>
+                                </DropdownButton>
+                            </Col>
+                        </Row>
+
                         <Row>
                             <Col md={12} className="text-center">
                                 <h4 className="line-up-player-status">TITULARES</h4>
