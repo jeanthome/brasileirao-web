@@ -9,7 +9,7 @@ class MatchDetailsContent extends Component {
     }
 
     render() {
-        
+
         const panelTitle = (
             <h3 className="text-center">O Jogo</h3>
         );

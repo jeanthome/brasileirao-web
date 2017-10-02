@@ -50,8 +50,8 @@
 }
 
 .club-list .club-badge-content{
-    max-height: 100%;
-    max-width: 100%;
+    max-height: 70%;
+    max-width: 70%;
     width: auto;
     height: auto;
     position: absolute;
