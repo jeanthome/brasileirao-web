@@ -38,8 +38,12 @@ class MatchList extends Component {
         return (
             <div className="margin-to-navbar text-center">
                 <Row>
-                    <Col md={4} mdOffset={4}>
+                    <Col md={6} mdOffset={3}>
                         <MatchListPagination/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={4} mdOffset={4}>
                         {this.renderMatchCards()}
                     </Col>
                 </Row>
@@ -56,4 +60,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {fetchMatchesInRound})(MatchList);
-

@@ -154,11 +154,22 @@
     text-align: center;
 }
 
+.match-card-score-value {
+    font-size: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+    font-weight: 300;
+}
+
+.match-card-score-separator {
+    font-size: 13px;
+    margin: 0px 15px;
+    font-weight: 100;
+}
+
 .match-card-score > h3{
     margin: 0px;
 }
-
-
 /* MatchDetails*/
 
 

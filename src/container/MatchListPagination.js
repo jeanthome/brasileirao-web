@@ -28,16 +28,14 @@ class MatchListPagination extends Component {
                 last
                 ellipsis
                 items={38}
-                maxButtons={3}
+                maxButtons={6}
                 activePage={this.state.activePage}
                 onSelect={this.handleSelect}
             />
-
         );
     }
 
     handleSelect(eventKey) {
-        console.log(eventKey);
         this.setState({
             activePage: eventKey
         })

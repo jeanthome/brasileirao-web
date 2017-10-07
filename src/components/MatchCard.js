@@ -14,6 +14,9 @@ class MatchCard extends Component {
         const {match} = this.props;
         const {homeClub, visitorClub} = match;
 
+        const homeClubGoals = match.finished ? match.homeClubGoals : "";
+        const visitorClubGoals = match.finished ? match.visitorClubGoals : "";
+
         const panelHeader = (
             <div className="match-card-header">
                 <div className="match-card-header-content">
@@ -36,9 +39,21 @@ class MatchCard extends Component {
                                 <img src={`${ROOT_URL}/clubs/${homeClub.identificator}/badge`}/>
                             </div>
                         </div>
+
                         <div className="match-card-score">
-                            <h5>X</h5>
+                            <span className="match-card-score-value">
+                                {homeClubGoals}
+                            </span>
+
+                            <span className="match-card-score-separator">
+                                X
+                            </span>
+
+                            <span className="match-card-score-value">
+                                {visitorClubGoals}
+                            </span>
                         </div>
+
                         <div className="match-card-club-item">
                             <div className="match-card-club-badge">
                                 <img
