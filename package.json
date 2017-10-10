@@ -29,6 +29,7 @@
     "axios": "^0.16.2",
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
+    "prop-types": "^15.6.0",
     "react": "^0.14.3",
     "react-bootstrap": "^0.31.2",
     "react-dom": "^0.14.3",

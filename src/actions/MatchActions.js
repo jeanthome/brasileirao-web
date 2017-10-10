@@ -3,6 +3,7 @@ import {ROOT_URL} from "../utils/Constants";
 
 export const FETCH_MATCHES = 'FETCH_MATCHES';
 export const FETCH_MATCH = 'FETCH_MATCH';
+export const FETCH_GOAL_TYPE = 'FETCH_GOAL_TYPE';
 
 export function fetchMatchesInRound(roundNumber) {
 
@@ -22,3 +23,13 @@ export function fetchMatch(matchId) {
         payload: request
     }
 }
+
+export function fetchGoalType() {
+
+    const request = axios.get(`${ROOT_URL}/matches/goalType`);
+    return {
+        type: FETCH_GOAL_TYPE,
+        payload: request
+    }
+}
+
