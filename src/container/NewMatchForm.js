@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Field, reduxForm} from "redux-form";
+import _ from 'lodash';
 import {connect} from "react-redux";
 import SelectInput from "../components/SelectInput";
 import {fetchStadiums, insertMatch} from "../actions/NewMatchActions";

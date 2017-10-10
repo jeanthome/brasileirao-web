@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import MatchDetailsScore from "../components/MatchDetailsScore";
 import MatchDetailsContent from "../components/MatchDetailsContent";
-import PropTypes from 'prop-types';
-import {PlayerStatus} from '../utils/Constants';
+import {PlayerStatus} from "../utils/Constants";
 
-import {fetchMatch, fetchGoalType} from "../actions/MatchActions";
+import {fetchGoalType, fetchMatch} from "../actions/MatchActions";
 
 import {connect} from "react-redux";
 
@@ -19,6 +18,8 @@ class MatchDetails extends Component {
 
         this.setPlayersStatus = this.setPlayersStatus.bind(this);
         this.setStatusFromPlayersList = this.setStatusFromPlayersList.bind(this);
+        this.getPlayersArrayToSelectInput = this.getPlayersArrayToSelectInput.bind(this);
+        this.getSelectInputFormatArray = this.getSelectInputFormatArray.bind(this);
     }
 
     componentDidMount() {
@@ -38,6 +39,7 @@ class MatchDetails extends Component {
             this.setPlayersStatus();
         }
     }
+
 
     render() {
 
@@ -78,7 +80,6 @@ class MatchDetails extends Component {
             this.setStatusFromPlayersList(visitorClubStartingPlayers, PlayerStatus.IN_GAME);
             this.setStatusFromPlayersList(homeClubSubstitutePlayers, PlayerStatus.AVAILABLE);
             this.setStatusFromPlayersList(visitorClubSubstitutePlayers, PlayerStatus.AVAILABLE);
-
             this.setState({settedPlayersStatus: true})
         }
     }
@@ -93,11 +94,54 @@ class MatchDetails extends Component {
             playersStatus: playersStatus
         })
     }
-}
 
-MatchDetails.propTypes = {
-    playerStatusEnum: PropTypes.oneOf(['IN_GAME'])
-};
+    /**
+     * Obtém array de jogadores relacionados para a partida e que estão com um status específico.
+     * Esse array é usado pelo componente 'SelectInput' em sua propriedade 'options';
+     *
+     * @param isHomeClub Booleano que define se o filtro será aplicado aos jogadores do time
+     * mandante (true) ou aos jogadores do time visitante (false).
+     * @param status O Status com o qual o jogador deve estar para ser retornado.
+     */
+    getPlayersArrayToSelectInput(isHomeClub, status) {
+
+        console.log("getPlayersArrayToSelectInput", isHomeClub, status);
+
+        if (isHomeClub) {
+
+            let {homeClubStartingPlayers, homeClubSubstitutePlayers} = this.props.matchToDetail;
+            return this.getSelectInputFormatArray(
+                homeClubStartingPlayers.concat(homeClubSubstitutePlayers), status);
+
+        } else {
+
+            let {visitorClubStartingPlayers, visitorClubSubstitutePlayers} = this.props.matchToDetail;
+            return this.getSelectInputFormatArray(
+                visitorClubStartingPlayers.concat(visitorClubSubstitutePlayers), status);
+        }
+    }
+
+    /**
+     * Filtra o atributo 'sourceList' retornando array de objetos no formato {value, label} com os
+     * jogadores que possuem um status específico.
+     *
+     * @param sourceList Lista com os jogadores a serem filtrados.
+     * @param status O Status com o qual o jogador deve estar para ser retornado.
+     */
+    getSelectInputFormatArray(sourceList, status) {
+
+        /*Obtém a lista com os status dos jogadores.*/
+        let playersStatus = this.state.playersStatus;
+        /*Faz o filtro, seguido de um map, dos jogadores*/
+        return sourceList.filter(player => playersStatus[player.id] === status).map(player => {
+            return {
+                value: player.id,
+                label: player.displayName
+            }
+        });
+    }
+
+}
 
 function mapStateToProps(state) {
 
