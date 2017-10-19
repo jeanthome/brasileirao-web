@@ -1,6 +1,10 @@
 import React, {Component} from "react";
-import {Col, Panel, Row, Button, Collapse, DropdownButton, MenuItem} from "react-bootstrap";
+import RootModal from "../container/RootModal";
+import MatchDetailsActionButtons from "../container/MatchDetailsActionButtons";
+
+import {Button, Col, Collapse, Panel, Row} from "react-bootstrap";
 import LineUp from "./LineUp";
+
 
 class MatchDetailsLineUp extends Component {
 
@@ -8,9 +12,10 @@ class MatchDetailsLineUp extends Component {
         super(props);
         this.state = {
             callapseSubstituteLineUp: false
-        }
+        };
 
         this.handleLineUpCollapse = this.handleLineUpCollapse.bind(this);
+
     }
 
     handleLineUpCollapse() {
@@ -19,49 +24,24 @@ class MatchDetailsLineUp extends Component {
         })
     }
 
+
     render() {
 
         const panelTitle = (
             <h3 className="text-center">Ficha de Jogo</h3>
         );
 
-        const {match} = this.props;
+        const {matchToDetail} = this.props;
 
-        const btnCollapseText = this.state.callapseSubstituteLineUp? "Fechar" : "Ficha Completa";
+        const btnCollapseText = this.state.callapseSubstituteLineUp ? "Fechar" : "Ficha Completa";
 
         return (
 
             <Row>
                 <Col md={6} mdOffset={3}>
                     <Panel header={panelTitle}>
-                        <Row>
-                            <Col md={6}>
-                                <DropdownButton
-                                    bsStyle="default"
-                                    title="Ações referentes ao mandante"
-                                    id="drop-down-home-club">
-                                    <MenuItem>Selecionar jogadores titulares</MenuItem>
-                                    <MenuItem>Selecionar jogadores reservas</MenuItem>
-                                    <MenuItem divider/>
-                                    <MenuItem>Inserir gol</MenuItem>
-                                    <MenuItem>Inserir cartão</MenuItem>
-                                    <MenuItem>Inserir substituição</MenuItem>
-                                </DropdownButton>
-                            </Col>
-                            <Col md={6}>
-                                <DropdownButton
-                                    bsStyle="default"
-                                    title="Ações referentes ao visitante"
-                                    id="drop-down-visitor-club">
-                                    <MenuItem>Selecionar jogadores titulares</MenuItem>
-                                    <MenuItem>Selecionar jogadores reservas</MenuItem>
-                                    <MenuItem divider/>
-                                    <MenuItem>Inserir gol</MenuItem>
-                                    <MenuItem>Inserir cartão</MenuItem>
-                                    <MenuItem>Inserir substituição</MenuItem>
-                                </DropdownButton>
-                            </Col>
-                        </Row>
+
+                        <MatchDetailsActionButtons matchToDetail={matchToDetail}/>
 
                         <Row>
                             <Col md={12} className="text-center">
@@ -74,13 +54,13 @@ class MatchDetailsLineUp extends Component {
                             <Col md={6} className="text-right">
                                 <LineUp
                                     side="left"
-                                    players={match.homeClubStartingPlayers}
+                                    players={matchToDetail.homeClubStartingPlayers}
                                 />
                             </Col>
                             <Col md={6}>
                                 <LineUp
                                     side="right"
-                                    players={match.visitorClubStartingPlayers}
+                                    players={matchToDetail.visitorClubStartingPlayers}
                                 />
                             </Col>
                         </Row>
@@ -98,13 +78,13 @@ class MatchDetailsLineUp extends Component {
                                     <Col md={6} className="text-right">
                                         <LineUp
                                             side="left"
-                                            players={match.homeClubSubstitutePlayers}
+                                            players={matchToDetail.homeClubSubstitutePlayers}
                                         />
                                     </Col>
                                     <Col md={6}>
                                         <LineUp
                                             side="right"
-                                            players={match.visitorClubSubstitutePlayers}
+                                            players={matchToDetail.visitorClubSubstitutePlayers}
                                         />
                                     </Col>
                                 </Row>
@@ -122,6 +102,7 @@ class MatchDetailsLineUp extends Component {
                         </Row>
                     </Panel>
                 </Col>
+                <RootModal/>
             </Row>
         )
     }

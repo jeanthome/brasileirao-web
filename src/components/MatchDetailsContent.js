@@ -16,7 +16,7 @@ class MatchDetailsContent extends Component {
         return (
 
             <Panel header={panelTitle}>
-               <MatchDetailsLineUp match={this.props.match}/>
+               <MatchDetailsLineUp matchToDetail={this.props.matchToDetail}/>
             </Panel>
         )
     }

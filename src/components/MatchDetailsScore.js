@@ -13,8 +13,8 @@ class MatchDetailsScore extends Component {
 
     render(){
 
-        const {match} = this.props;
-        const {homeClub, visitorClub} = match;
+        const {matchToDetail} = this.props;
+        const {homeClub, visitorClub} = matchToDetail;
         return (
 
             <Row>
@@ -32,14 +32,14 @@ class MatchDetailsScore extends Component {
 
                         <div className="score-middle">
                             <Col md={4} className="score-home-goals-wrapper">
-                                <span id="score-home-goals">{match.homeClubGoals.length}</span>
+                                <span id="score-home-goals">{matchToDetail.homeClubGoals.length}</span>
                             </Col>
 
                             <Col md={2} className="score-separator">
                                 <span>X</span>
                             </Col>
                             <Col md={4} className="score-visitor-goals-wrapper">
-                                <span id="score-visitor-goals">{match.visitorClubGoals.length}</span>
+                                <span id="score-visitor-goals">{matchToDetail.visitorClubGoals.length}</span>
                             </Col>
                         </div>
                     </Col>
