@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import MatchDetailsScore from "../components/MatchDetailsScore";
 import MatchDetailsContent from "../components/MatchDetailsContent";
-
-
+import RootModal from "../container/RootModal";
 
 import {fetchGoalType, fetchMatch} from "../actions/MatchActions";
 
@@ -20,7 +19,6 @@ class MatchDetails extends Component {
         /*Busca os detalhes da partida.*/
         this.props.fetchMatch(id);
         this.props.fetchGoalType();
-
     }
 
     render() {
@@ -40,10 +38,10 @@ class MatchDetails extends Component {
                 <MatchDetailsScore matchToDetail={matchToDetail}/>
                 <hr className="match-details-hr"/>
                 <MatchDetailsContent matchToDetail={matchToDetail}/>
+                <RootModal/>
             </div>
         )
     }
-
 
 
 }
@@ -52,7 +50,6 @@ function mapStateToProps(state) {
 
     return {
         matchToDetail: state.matches.matchToDetail,
-        goalType: state.matches.goalType
     };
 }
 

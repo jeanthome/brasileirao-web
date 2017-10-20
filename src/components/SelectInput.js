@@ -28,6 +28,20 @@ class SelectInput extends Component {
         const className = `form-group ${hasError ? 'has-error' : ''}`;
         const selectClassName = `${hasError ? 'react-select-wrapper' : ''}`;
 
+        var helpBlock = null;
+
+        if (errorMessage) {
+            helpBlock = (
+                <div className="help-block">
+                    {hasError ? errorMessage : ''}
+                </div>
+            )
+        }
+
+        const panelTitle = (
+            <h3 className="text-center">Ficha de Jogo</h3>
+        );
+
         return (
             <div className={className}>
                 <div className={selectClassName}>
@@ -38,9 +52,7 @@ class SelectInput extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="help-block">
-                    {hasError ? errorMessage : ''}
-                </div>
+                {helpBlock}
             </div>
         );
     }

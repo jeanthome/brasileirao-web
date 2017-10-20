@@ -323,3 +323,27 @@ hr{
     left: 50%;
     transform: translate(-50%, -50%) !important;
 }
+
+/*Modal de gol*/
+
+
+.modal-goal-wrapper{
+    display: table;
+}
+.modal-goal-item{
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.no-right-padding {
+    padding-right: 0px;
+}
+
+.no-left-padding {
+    padding-left: 0px;
+}

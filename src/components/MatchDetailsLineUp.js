@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import RootModal from "../container/RootModal";
 import MatchDetailsActionButtons from "../container/MatchDetailsActionButtons";
 
 import {Button, Col, Collapse, Panel, Row} from "react-bootstrap";
@@ -102,7 +101,7 @@ class MatchDetailsLineUp extends Component {
                         </Row>
                     </Panel>
                 </Col>
-                <RootModal/>
+
             </Row>
         )
     }

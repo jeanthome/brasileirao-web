@@ -22,8 +22,10 @@ class MatchDetailsActionButtons extends Component {
 
     showNewGoalModal(clubType) {
 
-        const playersAvailable = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
-        this.props.showModal(ModalTypes.NEW_GOAL_MODAL, {clubType: clubType})
+        const players = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
+        const modalProps = {};
+        modalProps["players"] = players;
+        this.props.showModal(ModalTypes.NEW_GOAL_MODAL, modalProps);
     }
 
     componentDidMount() {
@@ -42,12 +44,12 @@ class MatchDetailsActionButtons extends Component {
                         bsStyle="default"
                         title="Ações referentes ao mandante"
                         id="drop-down-home-club">
-                        <MenuItem eventKey={ClubTypes.HOME_CLUB}
-                                  onSelect={this.showNewGoalModal}>Selecionar jogadores titulares
-                        </MenuItem>
+                        <MenuItem>Selecionar jogadores titulares</MenuItem>
                         <MenuItem>Selecionar jogadores reservas</MenuItem>
                         <MenuItem divider/>
-                        <MenuItem>Inserir gol</MenuItem>
+                        <MenuItem eventKey={ClubTypes.HOME_CLUB}
+                                  onSelect={this.showNewGoalModal}>Inserir gol
+                        </MenuItem>
                         <MenuItem>Inserir cartão</MenuItem>
                         <MenuItem>Inserir substituição</MenuItem>
                     </DropdownButton>
@@ -57,12 +59,12 @@ class MatchDetailsActionButtons extends Component {
                         bsStyle="default"
                         title="Ações referentes ao visitante"
                         id="drop-down-visitor-club">
-                        <MenuItem eventKey={ClubTypes.VISITOR_CLUB}
-                                  onSelect={this.showNewGoalModal}>Selecionar jogadores titulares
+                        <MenuItem >Selecionar jogadores titulares
                         </MenuItem>
                         <MenuItem>Selecionar jogadores reservas</MenuItem>
                         <MenuItem divider/>
-                        <MenuItem>Inserir gol</MenuItem>
+                        <MenuItem eventKey={ClubTypes.VISITOR_CLUB}
+                                  onSelect={this.showNewGoalModal}>Inserir gol</MenuItem>
                         <MenuItem>Inserir cartão</MenuItem>
                         <MenuItem>Inserir substituição</MenuItem>
                     </DropdownButton>
