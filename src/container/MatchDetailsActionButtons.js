@@ -23,8 +23,12 @@ class MatchDetailsActionButtons extends Component {
     showNewGoalModal(clubType) {
 
         const players = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
+
+        /*Define as propriedades do Modal*/
         const modalProps = {};
         modalProps["players"] = players;
+        modalProps["clubType"] = clubType;
+        modalProps["matchId"] = this.props.matchToDetail.identificator;
         this.props.showModal(ModalTypes.NEW_GOAL_MODAL, modalProps);
     }
 
@@ -59,7 +63,7 @@ class MatchDetailsActionButtons extends Component {
                         bsStyle="default"
                         title="Ações referentes ao visitante"
                         id="drop-down-visitor-club">
-                        <MenuItem >Selecionar jogadores titulares
+                        <MenuItem>Selecionar jogadores titulares
                         </MenuItem>
                         <MenuItem>Selecionar jogadores reservas</MenuItem>
                         <MenuItem divider/>

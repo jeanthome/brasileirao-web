@@ -19,9 +19,9 @@ class RootModal extends Component {
             return null;
         }
 
-        const SpectficModal = MODAL_COMPONENTS[modalType];
+        const SpecificModal = MODAL_COMPONENTS[modalType];
         return (
-            <SpectficModal {...modalProps}/>
+            <SpecificModal {...modalProps}/>
         );
     }
 }

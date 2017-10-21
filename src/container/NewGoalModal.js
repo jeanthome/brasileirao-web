@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {hideModal} from "../actions/ModalActions";
-import {Button, Col, Modal, Row, FormGroup, Radio} from "react-bootstrap";
+import {fetchMatch, insertGoal} from "../actions/MatchActions";
+import {Button, Col, FormGroup, Modal, Radio, Row} from "react-bootstrap";
 import SelectInput from "../components/SelectInput";
 import {Field, reduxForm} from "redux-form";
 import {isInt} from "../utils/ValidationHelper";
@@ -15,6 +16,14 @@ class NewGoalModal extends Component {
 
     onSubmit(values) {
 
+        /*Adiciona as informações que não vêm do formulário do Modal.*/
+        values["clubType"] = this.props.clubType;
+        values["matchId"] = this.props.matchId;
+
+        this.props.insertGoal(values, () => {
+            this.props.fetchMatch(this.props.matchId);
+            this.props.hideModal();
+        });
     }
 
     render() {
@@ -25,21 +34,23 @@ class NewGoalModal extends Component {
 
         return (
             <div className="modal-container">
+
                 <Modal {...this.props}
                        show={true}
                        dialogClassName="custom-modal"
                        onHide={this.props.hideModal}>
 
-                    <Modal.Header closeButton>
-                        <Modal.Title >Inserir gol</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div className="form-area">
-                            <form onSubmit={handleSubmit(this.onSubmit)}>
+                    <form onSubmit={handleSubmit(this.onSubmit)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Inserir gol</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+
+                            <div className="form-area">
                                 <Row>
                                     <Col md={12}>
                                         <Field
-                                            name="owner"
+                                            name="goalOwner"
                                             component={SelectInput}
                                             options={this.props.players}
                                             placeholder="Autor do gol"
@@ -92,13 +103,14 @@ class NewGoalModal extends Component {
                                         />
                                     </Col>
                                 </Row>
-                            </form>
-                        </div>
+                            </div>
 
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={this.props.hideModal}>Fechar</Button>
-                    </Modal.Footer>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button onClick={this.props.hideModal}>Cancelar</Button>
+                            <Button bsStyle="primary" type="submit">Salvar</Button>
+                        </Modal.Footer>
+                    </form>
                 </Modal>
             </div>
         )
@@ -126,12 +138,12 @@ class NewGoalModal extends Component {
         return (
             <FormGroup {...field.input}>
                 <Col md={6} className="form-group">
-                    <Radio name="goal-half" inline value="0">
+                    <Radio name="goal-half" inline value="FIRST_HALF">
                         1° tempo
                     </Radio>
                 </Col>
                 <Col md={6} className="form-group">
-                    <Radio name="goal-half" inline value="1">
+                    <Radio name="goal-half" inline value="SECOND_HALF">
                         2° tempo
                     </Radio>
                 </Col>
@@ -156,7 +168,6 @@ class NewGoalModal extends Component {
 
 function validate(values) {
 
-    console.log("Validate", values);
     const errors = {};
 
     if (!values.goalMinute) {
@@ -185,8 +196,7 @@ function mapStateToProps(state) {
 
 export default reduxForm({
     validate,
-    form: 'newGoalModal',
-    fields: []
+    form: 'newGoalModal'
 })(
-    connect(mapStateToProps, {hideModal})(NewGoalModal)
+    connect(mapStateToProps, {hideModal, insertGoal, fetchMatch})(NewGoalModal)
 );
