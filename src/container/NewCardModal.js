@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {hideModal} from "../actions/ModalActions";
-import {fetchMatch} from "../actions/MatchActions";
+import {fetchMatch, insertCard} from "../actions/MatchActions";
 import {Button, Col, FormGroup, Modal, Radio, Row} from "react-bootstrap";
 import SelectInput from "../components/SelectInput";
 import {Field, reduxForm} from "redux-form";
 import {isInt} from "../utils/ValidationHelper";
-import {CardColors} from '../utils/Constants';
+import {CardColors, HalfEnum} from '../utils/Constants';
 
 class NewCardModal extends Component {
 
@@ -20,6 +20,13 @@ class NewCardModal extends Component {
         /*Adiciona as informações que não vêm do formulário do Modal.*/
         values["clubType"] = this.props.clubType;
         values["matchId"] = this.props.matchId;
+
+        values.half = values.half? values.half : HalfEnum.FIRST_HALF;
+
+        this.props.insertCard(values, () => {
+            this.props.fetchMatch(this.props.matchId);
+            this.props.hideModal();
+        });
     }
 
     render() {
@@ -81,7 +88,7 @@ class NewCardModal extends Component {
                                 <Row>
                                     <Col md={12}>
                                         <Field
-                                            name="description"
+                                            name="reason"
                                             component={this.renderCardReasonField}
                                         />
                                     </Col>
@@ -126,7 +133,7 @@ class NewCardModal extends Component {
         return (
             <FormGroup {...field.input}>
                 <Col md={6} className="form-group">
-                    <Radio checked name="goal-half" inline value="FIRST_HALF">
+                    <Radio defaultChecked name="goal-half" inline value="FIRST_HALF">
                         1° tempo
                     </Radio>
                 </Col>
@@ -155,9 +162,7 @@ class NewCardModal extends Component {
 }
 
 function validate(values) {
-
-    console.log(values);
-
+    
     const errors = {};
 
     if (!values.minute || !isInt(values.minute)) {
@@ -171,5 +176,5 @@ export default reduxForm({
     validate,
     form: 'newCardModal'
 })(
-    connect(null, {hideModal, fetchMatch})(NewCardModal)
+    connect(null, {hideModal, fetchMatch, insertCard})(NewCardModal)
 );

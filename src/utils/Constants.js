@@ -38,3 +38,12 @@ export const CardColors = Object.freeze({
     YELLOW: {value: "YELLOW", label: "Amarelo"},
     RED: {value: "RED", label: "Vermelho"}
 });
+
+/**
+ * Os tempos de uma partida.
+ * @type {Object}
+ */
+export const HalfEnum = Object.freeze({
+    FIRST_HALF: "FIRST_HALF",
+    SECOND_HALF: "SECOND_HALF"
+});

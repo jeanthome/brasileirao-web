@@ -5,6 +5,7 @@ export const FETCH_MATCHES = 'FETCH_MATCHES';
 export const FETCH_MATCH = 'FETCH_MATCH';
 export const FETCH_GOAL_TYPE = 'FETCH_GOAL_TYPE';
 export const INSERT_GOAL = 'INSERT_GOAL';
+export const INSERT_CARD = 'INSERT_CARD';
 
 export function fetchMatchesInRound(roundNumber) {
 
@@ -44,3 +45,12 @@ export function insertGoal(values, callback) {
     }
 }
 
+export function insertCard(values, callback) {
+
+    const request = axios.put(`${ROOT_URL}/matches/cards`, values).then(() => callback());
+
+    return {
+        type: INSERT_CARD,
+        payload: request
+    }
+}

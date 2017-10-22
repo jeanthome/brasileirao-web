@@ -20,6 +20,8 @@ class NewGoalModal extends Component {
         values["clubType"] = this.props.clubType;
         values["matchId"] = this.props.matchId;
 
+        values.half = values.half? values.half : HalfEnum.FIRST_HALF;
+
         this.props.insertGoal(values, () => {
             this.props.fetchMatch(this.props.matchId);
             this.props.hideModal();
@@ -77,7 +79,7 @@ class NewGoalModal extends Component {
                                         </Col>
                                         <Col md={5} className="no-padding modal-goal-item">
                                             <Field
-                                                name="goalHalf"
+                                                name="half"
                                                 component={this.renderRadioButtons}
                                             />
                                         </Col>
@@ -135,7 +137,7 @@ class NewGoalModal extends Component {
         return (
             <FormGroup {...field.input}>
                 <Col md={6} className="form-group">
-                    <Radio checked name="goal-half" inline value="FIRST_HALF">
+                    <Radio defaultChecked name="goal-half" inline value="FIRST_HALF">
                         1° tempo
                     </Radio>
                 </Col>
