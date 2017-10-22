@@ -3,7 +3,7 @@ import {showModal} from "../actions/ModalActions";
 import {connect} from "react-redux";
 
 import {Col, DropdownButton, MenuItem, Row} from "react-bootstrap";
-import {ClubTypes, ModalTypes, PlayerStatus} from "../utils/Constants";
+import {ClubTypes, ModalTypes, PlayerStatus, CardColors} from "../utils/Constants";
 
 class MatchDetailsActionButtons extends Component {
     constructor(props) {
@@ -14,6 +14,7 @@ class MatchDetailsActionButtons extends Component {
         };
 
         this.showNewGoalModal = this.showNewGoalModal.bind(this);
+        this.showNewCardModal = this.showNewCardModal.bind(this);
         this.setPlayersStatus = this.setPlayersStatus.bind(this);
         this.setStatusFromPlayersList = this.setStatusFromPlayersList.bind(this);
         this.getPlayersArrayToSelectInput = this.getPlayersArrayToSelectInput.bind(this);
@@ -22,6 +23,9 @@ class MatchDetailsActionButtons extends Component {
 
     showNewGoalModal(clubType) {
 
+        /**
+         * Somente jogadores que estão jogando podem fazer gol.
+         */
         const players = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
 
         /*Define as propriedades do Modal*/
@@ -30,6 +34,24 @@ class MatchDetailsActionButtons extends Component {
         modalProps["clubType"] = clubType;
         modalProps["matchId"] = this.props.matchToDetail.identificator;
         this.props.showModal(ModalTypes.NEW_GOAL_MODAL, modalProps);
+    }
+
+    showNewCardModal(clubType) {
+
+        /**
+         * Todos os jogadores relacionados (exceto aqueles que já foram expulsos) estão habilitados
+         * a receber cartão.
+         */
+        const inGamePlayers = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
+        const availablePlayers = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.AVAILABLE);
+        const notAvailablePlayers = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.NOT_AVAILABLE);
+
+        /*Define as propriedades do Modal*/
+        const modalProps = {};
+        modalProps["players"] = inGamePlayers.concat(availablePlayers).concat(notAvailablePlayers);
+        modalProps["clubType"] = clubType;
+        modalProps["matchId"] = this.props.matchToDetail.identificator;
+        this.props.showModal(ModalTypes.NEW_CARD_MODAL, modalProps);
     }
 
     componentDidMount() {
@@ -54,7 +76,9 @@ class MatchDetailsActionButtons extends Component {
                         <MenuItem eventKey={ClubTypes.HOME_CLUB}
                                   onSelect={this.showNewGoalModal}>Inserir gol
                         </MenuItem>
-                        <MenuItem>Inserir cartão</MenuItem>
+                        <MenuItem eventKey={ClubTypes.HOME_CLUB}
+                                  onSelect={this.showNewCardModal}>Inserir cartão
+                        </MenuItem>
                         <MenuItem>Inserir substituição</MenuItem>
                     </DropdownButton>
                 </Col>
@@ -69,7 +93,9 @@ class MatchDetailsActionButtons extends Component {
                         <MenuItem divider/>
                         <MenuItem eventKey={ClubTypes.VISITOR_CLUB}
                                   onSelect={this.showNewGoalModal}>Inserir gol</MenuItem>
-                        <MenuItem>Inserir cartão</MenuItem>
+                        <MenuItem eventKey={ClubTypes.VISITOR_CLUB}
+                                  onSelect={this.showNewCardModal}>Inserir cartão
+                        </MenuItem>
                         <MenuItem>Inserir substituição</MenuItem>
                     </DropdownButton>
                 </Col>

@@ -1,13 +1,14 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {hideModal} from "../actions/ModalActions";
-import {fetchMatch, insertGoal} from "../actions/MatchActions";
+import {fetchMatch} from "../actions/MatchActions";
 import {Button, Col, FormGroup, Modal, Radio, Row} from "react-bootstrap";
 import SelectInput from "../components/SelectInput";
 import {Field, reduxForm} from "redux-form";
 import {isInt} from "../utils/ValidationHelper";
+import {CardColors} from '../utils/Constants';
 
-class NewGoalModal extends Component {
+class NewCardModal extends Component {
 
     constructor(props) {
         super(props);
@@ -19,16 +20,11 @@ class NewGoalModal extends Component {
         /*Adiciona as informações que não vêm do formulário do Modal.*/
         values["clubType"] = this.props.clubType;
         values["matchId"] = this.props.matchId;
-
-        this.props.insertGoal(values, () => {
-            this.props.fetchMatch(this.props.matchId);
-            this.props.hideModal();
-        });
     }
 
     render() {
-
         const {handleSubmit} = this.props;
+
         return (
             <div className="modal-container">
 
@@ -39,45 +35,44 @@ class NewGoalModal extends Component {
 
                     <form onSubmit={handleSubmit(this.onSubmit)}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Inserir gol</Modal.Title>
+                            <Modal.Title>Inserir cartão</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-
                             <div className="form-area">
                                 <Row>
                                     <Col md={12}>
                                         <Field
-                                            name="goalOwner"
+                                            name="cardOwner"
                                             component={SelectInput}
                                             options={this.props.players}
-                                            placeholder="Autor do gol"
-                                            errorMessage="Atributo 'Autor do gol' não pode ficar vazio."
+                                            placeholder="Jogador que recebeu o cartão"
+                                            errorMessage="Este atributo não pode ficar vazio."
                                         />
                                     </Col>
                                 </Row>
+
                                 <Row className="">
                                     <Col md={12}>
                                         <Col md={7} className="modal-goal-item no-padding">
                                             <Col md={7} className="modal-goal-item no-left-padding">
                                                 <Field
-                                                    name="goalType"
+                                                    name="cardColor"
                                                     component={SelectInput}
-                                                    options={this.props.goalType}
-                                                    placeholder="Tipo de gol"
+                                                    options={this.getCardTypesForSelectInput()}
+                                                    placeholder="Cor do cartão"
                                                 />
                                             </Col>
                                             <Col md={5} className="modal-goal-item">
                                                 <Field
                                                     placeholder="Minuto"
-                                                    name="goalMinute"
+                                                    name="minute"
                                                     component={this.renderField}
                                                 />
                                             </Col>
-
                                         </Col>
                                         <Col md={5} className="no-padding modal-goal-item">
                                             <Field
-                                                name="goalHalf"
+                                                name="half"
                                                 component={this.renderRadioButtons}
                                             />
                                         </Col>
@@ -86,22 +81,13 @@ class NewGoalModal extends Component {
                                 <Row>
                                     <Col md={12}>
                                         <Field
-                                            placeholder="Título do lance"
-                                            name="title"
-                                            component={this.renderField}
-                                        />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12}>
-                                        <Field
                                             name="description"
-                                            component={this.renderGoalDescriptionField}
+                                            component={this.renderCardReasonField}
                                         />
                                     </Col>
                                 </Row>
-                            </div>
 
+                            </div>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.props.hideModal}>Cancelar</Button>
@@ -111,6 +97,11 @@ class NewGoalModal extends Component {
                 </Modal>
             </div>
         )
+    }
+
+    getCardTypesForSelectInput() {
+        const options = [CardColors.YELLOW, CardColors.RED];
+        return options;
     }
 
     renderField(field) {
@@ -148,13 +139,13 @@ class NewGoalModal extends Component {
         )
     }
 
-    renderGoalDescriptionField(field) {
+    renderCardReasonField(field) {
         return (
             <div className="form-group">
               <textarea
                   className="form-control"
-                  placeholder="Descrição do lance"
-                  maxLength="500"
+                  placeholder="Motivo do recebimento do cartão"
+                  maxLength="350"
                   rows="4"
                   {...field.input}>
               </textarea>
@@ -165,29 +156,20 @@ class NewGoalModal extends Component {
 
 function validate(values) {
 
+    console.log(values);
+
     const errors = {};
 
-    if (!values.title) {
-        errors.title = true;
-    }
-
-    if (!values.goalMinute || !isInt(values.goalMinute)) {
-        errors.goalMinute = true;
+    if (!values.minute || !isInt(values.minute)) {
+        errors.minute = true;
     }
 
     return errors;
 }
 
-function mapStateToProps(state) {
-
-    return {
-        goalType: state.matches.goalType
-    };
-}
-
 export default reduxForm({
     validate,
-    form: 'newGoalModal'
+    form: 'newCardModal'
 })(
-    connect(mapStateToProps, {hideModal, insertGoal, fetchMatch})(NewGoalModal)
+    connect(null, {hideModal, fetchMatch})(NewCardModal)
 );

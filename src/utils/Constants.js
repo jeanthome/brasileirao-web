@@ -16,7 +16,8 @@ export const PlayerStatus = Object.freeze({
  * @type {Object}
  */
 export const ModalTypes = Object.freeze({
-    NEW_GOAL_MODAL: "NEW_GOAL_MODAL"
+    NEW_GOAL_MODAL: "NEW_GOAL_MODAL",
+    NEW_CARD_MODAL: "NEW_CARD_MODAL"
 });
 
 /**
@@ -26,4 +27,14 @@ export const ModalTypes = Object.freeze({
 export const ClubTypes = Object.freeze({
     HOME_CLUB: "HOME_CLUB",
     VISITOR_CLUB: "VISITOR_CLUB"
+});
+
+
+/**
+ * Define as cores do cartão que um jogador pode receber.
+ * @type {Object}
+ */
+export const CardColors = Object.freeze({
+    YELLOW: {value: "YELLOW", label: "Amarelo"},
+    RED: {value: "RED", label: "Vermelho"}
 });

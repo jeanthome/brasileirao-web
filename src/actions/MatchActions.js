@@ -16,7 +16,7 @@ export function fetchMatchesInRound(roundNumber) {
 }
 
 export function fetchMatch(matchId) {
-    
+
     const request = axios.get(`${ROOT_URL}/matches/${matchId}`);
 
     return {

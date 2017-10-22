@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import NewGoalModal from "../container/NewGoalModal";
+import NewCardModal from '../container/NewCardModal';
 
 const MODAL_COMPONENTS = {
-    'NEW_GOAL_MODAL': NewGoalModal
+    'NEW_GOAL_MODAL': NewGoalModal,
+    'NEW_CARD_MODAL': NewCardModal
 };
 
 class RootModal extends Component {
