@@ -1,38 +1,34 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {hideModal} from "../actions/ModalActions";
-import {fetchMatch, insertCard} from "../actions/MatchActions";
-import {Button, Col, FormGroup, Modal, Radio, Row} from "react-bootstrap";
+import {fetchMatch} from "../actions/MatchActions";
 import SelectInput from "../components/SelectInput";
 import {Field, reduxForm} from "redux-form";
+import {Button, Col, FormGroup, Modal, Radio, Row} from "react-bootstrap";
+import {HalfEnum} from '../utils/Constants';
 import {isInt} from "../utils/ValidationHelper";
-import {CardColors, HalfEnum} from '../utils/Constants';
 
-class NewCardModal extends Component {
-
+class NewSubstitutionModal extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onSubmit(values) {
 
-        /*Adiciona as informações que não vêm do formulário do Modal.*/
+    onSubmit(values) {
+        console.log("onSubmit");
         values["clubType"] = this.props.clubType;
         values["matchId"] = this.props.matchId;
-
-        values.half = values.half? values.half : HalfEnum.FIRST_HALF;
-
-        this.props.insertCard(values, () => {
-            this.props.fetchMatch(this.props.matchId);
-            this.props.hideModal();
-        });
+        values.half = values.half ? values.half : HalfEnum.FIRST_HALF;
+        console.log(values);
     }
 
     render() {
+
         const {handleSubmit} = this.props;
 
         return (
+
             <div className="modal-container">
 
                 <Modal {...this.props}
@@ -42,55 +38,53 @@ class NewCardModal extends Component {
 
                     <form onSubmit={handleSubmit(this.onSubmit)}>
                         <Modal.Header closeButton>
-                            <Modal.Title>Inserir cartão</Modal.Title>
+                            <Modal.Title>Inserir substituição</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <div className="form-area">
                                 <Row>
                                     <Col md={12}>
-                                        <Field
-                                            name="cardOwner"
-                                            component={SelectInput}
-                                            options={this.props.players}
-                                            placeholder="Jogador que recebeu o cartão"
-                                            errorMessage="Este atributo não pode ficar vazio."
-                                        />
+                                        <Col md={6} className="no-left-padding">
+                                            <Field
+                                                name="playerWhoLeaves"
+                                                component={SelectInput}
+                                                options={this.props.playersWhoCanLeave}
+                                                placeholder="Selecione o jogador que sairá."
+                                                errorMessage="Este atributo não pode ficar vazio."
+                                            />
+                                        </Col>
+                                        <Col md={6} className="no-right-padding">
+                                            <Field
+                                                name="playerWhoEnters"
+                                                component={SelectInput}
+                                                options={this.props.playersWhoCanEnter}
+                                                placeholder="Selecione o jogador que entrará."
+                                                errorMessage="Este atributo não pode ficar vazio."
+                                            />
+                                        </Col>
                                     </Col>
                                 </Row>
 
-                                <Row className="">
+                                <Row>
                                     <Col md={12}>
+
                                         <Col md={7} className="modal-goal-item no-padding">
-                                            <Col md={7} className="modal-goal-item no-left-padding">
-                                                <Field
-                                                    name="cardColor"
-                                                    component={SelectInput}
-                                                    options={this.getCardTypesForSelectInput()}
-                                                    placeholder="Cor do cartão"
-                                                />
-                                            </Col>
-                                            <Col md={5} className="modal-goal-item">
+                                            <Col md={3} className="modal-goal-item no-left-padding">
                                                 <Field
                                                     placeholder="Minuto"
                                                     name="minute"
                                                     component={this.renderField}
                                                 />
                                             </Col>
+
+                                            <Col md={7} className="no-padding modal-goal-item">
+                                                <Field
+                                                    name="half"
+                                                    component={this.renderRadioButtons}
+                                                />
+                                            </Col>
                                         </Col>
-                                        <Col md={5} className="no-padding modal-goal-item">
-                                            <Field
-                                                name="half"
-                                                component={this.renderRadioButtons}
-                                            />
-                                        </Col>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12}>
-                                        <Field
-                                            name="reason"
-                                            component={this.renderCardReasonField}
-                                        />
+
                                     </Col>
                                 </Row>
 
@@ -102,13 +96,10 @@ class NewCardModal extends Component {
                         </Modal.Footer>
                     </form>
                 </Modal>
-            </div>
-        )
-    }
 
-    getCardTypesForSelectInput() {
-        const options = [CardColors.YELLOW, CardColors.RED];
-        return options;
+            </div>
+
+        );
     }
 
     renderField(field) {
@@ -145,36 +136,24 @@ class NewCardModal extends Component {
             </FormGroup>
         )
     }
-
-    renderCardReasonField(field) {
-        return (
-            <div className="form-group">
-              <textarea
-                  className="form-control"
-                  placeholder="Motivo do recebimento do cartão"
-                  maxLength="350"
-                  rows="4"
-                  {...field.input}>
-              </textarea>
-            </div>
-        );
-    }
 }
 
 function validate(values) {
 
+    console.log(values);
+
     const errors = {};
-
-    if (!values.cardOwner) {
-        errors.cardOwner = true;
-    }
-
-    if (!values.cardColor) {
-        errors.cardColor = true;
-    }
 
     if (!values.minute || !isInt(values.minute)) {
         errors.minute = true;
+    }
+
+    if (!values.playerWhoLeaves) {
+        errors.playerWhoLeaves = true;
+    }
+
+    if (!values.playerWhoEnters) {
+        errors.playerWhoEnters = true;
     }
 
     return errors;
@@ -182,7 +161,7 @@ function validate(values) {
 
 export default reduxForm({
     validate,
-    form: 'newCardModal'
+    form: 'newSubstitutionModal'
 })(
-    connect(null, {hideModal, fetchMatch, insertCard})(NewCardModal)
+    connect(null, {hideModal, fetchMatch})(NewSubstitutionModal)
 );

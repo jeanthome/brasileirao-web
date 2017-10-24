@@ -17,7 +17,8 @@ export const PlayerStatus = Object.freeze({
  */
 export const ModalTypes = Object.freeze({
     NEW_GOAL_MODAL: "NEW_GOAL_MODAL",
-    NEW_CARD_MODAL: "NEW_CARD_MODAL"
+    NEW_CARD_MODAL: "NEW_CARD_MODAL",
+    NEW_SUBSTITUTION_MODAL: "NEW_SUBSTITUTION_MODAL"
 });
 
 /**

@@ -3,7 +3,7 @@ import {showModal} from "../actions/ModalActions";
 import {connect} from "react-redux";
 
 import {Col, DropdownButton, MenuItem, Row} from "react-bootstrap";
-import {ClubTypes, ModalTypes, PlayerStatus, CardColors} from "../utils/Constants";
+import {ClubTypes, ModalTypes, PlayerStatus} from "../utils/Constants";
 
 class MatchDetailsActionButtons extends Component {
     constructor(props) {
@@ -15,6 +15,8 @@ class MatchDetailsActionButtons extends Component {
 
         this.showNewGoalModal = this.showNewGoalModal.bind(this);
         this.showNewCardModal = this.showNewCardModal.bind(this);
+        this.showNewSubstitutionModal = this.showNewSubstitutionModal.bind(this);
+        this.setsModalDefaultProps = this.setsModalDefaultProps.bind(this);
         this.setPlayersStatus = this.setPlayersStatus.bind(this);
         this.setStatusFromPlayersList = this.setStatusFromPlayersList.bind(this);
         this.getPlayersArrayToSelectInput = this.getPlayersArrayToSelectInput.bind(this);
@@ -29,10 +31,8 @@ class MatchDetailsActionButtons extends Component {
         const players = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
 
         /*Define as propriedades do Modal*/
-        const modalProps = {};
+        const modalProps = this.setsModalDefaultProps(clubType);
         modalProps["players"] = players;
-        modalProps["clubType"] = clubType;
-        modalProps["matchId"] = this.props.matchToDetail.identificator;
         this.props.showModal(ModalTypes.NEW_GOAL_MODAL, modalProps);
     }
 
@@ -47,11 +47,40 @@ class MatchDetailsActionButtons extends Component {
         const notAvailablePlayers = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.NOT_AVAILABLE);
 
         /*Define as propriedades do Modal*/
-        const modalProps = {};
+        const modalProps = this.setsModalDefaultProps(clubType);
         modalProps["players"] = inGamePlayers.concat(availablePlayers).concat(notAvailablePlayers);
+        this.props.showModal(ModalTypes.NEW_CARD_MODAL, modalProps);
+    }
+
+    showNewSubstitutionModal(clubType) {
+
+        /**
+         * Obtém os jogadores que estão na partida.
+         */
+        const playersInMatch = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
+
+        /**
+         * Obtém os jogadores que ainda podem entrar na partida.
+         */
+        const availablePlayers = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.AVAILABLE);
+
+        const modalProps = this.setsModalDefaultProps(clubType);
+        modalProps["playersWhoCanLeave"] = playersInMatch;
+        modalProps["playersWhoCanEnter"] = availablePlayers;
+        this.props.showModal(ModalTypes.NEW_SUBSTITUTION_MODAL, modalProps);
+    }
+
+    /**
+     * Atribui as propriedades comuns a todos os Modals.
+     *
+     * @param clubType Indica sobre qual clube o Modal atuará.
+     * @returns {{}} Objeto com as propriedades default.
+     */
+    setsModalDefaultProps(clubType) {
+        const modalProps = {};
         modalProps["clubType"] = clubType;
         modalProps["matchId"] = this.props.matchToDetail.identificator;
-        this.props.showModal(ModalTypes.NEW_CARD_MODAL, modalProps);
+        return modalProps;
     }
 
     componentDidMount() {
@@ -79,7 +108,9 @@ class MatchDetailsActionButtons extends Component {
                         <MenuItem eventKey={ClubTypes.HOME_CLUB}
                                   onSelect={this.showNewCardModal}>Inserir cartão
                         </MenuItem>
-                        <MenuItem>Inserir substituição</MenuItem>
+                        <MenuItem eventKey={ClubTypes.HOME_CLUB}
+                                  onSelect={this.showNewSubstitutionModal}>Inserir substituição
+                        </MenuItem>
                     </DropdownButton>
                 </Col>
                 <Col md={6}>
@@ -96,7 +127,9 @@ class MatchDetailsActionButtons extends Component {
                         <MenuItem eventKey={ClubTypes.VISITOR_CLUB}
                                   onSelect={this.showNewCardModal}>Inserir cartão
                         </MenuItem>
-                        <MenuItem>Inserir substituição</MenuItem>
+                        <MenuItem eventKey={ClubTypes.VISITOR_CLUB}
+                                  onSelect={this.showNewSubstitutionModal}>Inserir substituição
+                        </MenuItem>
                     </DropdownButton>
                 </Col>
             </Row>

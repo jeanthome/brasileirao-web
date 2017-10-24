@@ -6,6 +6,7 @@ import {Button, Col, FormGroup, Modal, Radio, Row} from "react-bootstrap";
 import SelectInput from "../components/SelectInput";
 import {Field, reduxForm} from "redux-form";
 import {isInt} from "../utils/ValidationHelper";
+import {HalfEnum} from '../utils/Constants';
 
 class NewGoalModal extends Component {
 
@@ -20,7 +21,7 @@ class NewGoalModal extends Component {
         values["clubType"] = this.props.clubType;
         values["matchId"] = this.props.matchId;
 
-        values.half = values.half? values.half : HalfEnum.FIRST_HALF;
+        values.half = values.half ? values.half : HalfEnum.FIRST_HALF;
 
         this.props.insertGoal(values, () => {
             this.props.fetchMatch(this.props.matchId);
@@ -137,12 +138,12 @@ class NewGoalModal extends Component {
         return (
             <FormGroup {...field.input}>
                 <Col md={6} className="form-group">
-                    <Radio defaultChecked name="goal-half" inline value="FIRST_HALF">
+                    <Radio defaultChecked name="goal-half" inline value={HalfEnum.FIRST_HALF}>
                         1° tempo
                     </Radio>
                 </Col>
                 <Col md={6} className="form-group">
-                    <Radio name="goal-half" inline value="SECOND_HALF">
+                    <Radio name="goal-half" inline value={HalfEnum.SECOND_HALF}>
                         2° tempo
                     </Radio>
                 </Col>
@@ -168,6 +169,14 @@ class NewGoalModal extends Component {
 function validate(values) {
 
     const errors = {};
+
+    if (!values.goalOwner) {
+        errors.goalOwner = true;
+    }
+
+    if (!values.goalType) {
+        errors.goalType = true;
+    }
 
     if (!values.title) {
         errors.title = true;

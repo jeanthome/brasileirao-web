@@ -3,7 +3,7 @@ import Select from "react-select";
 
 /**
  * Componente para integrar react-select e redux-form.
- * Representa um input do tipo select, cujas opções são recebidas via props.
+ * Representa um input do tipo select, cujas opções são recebidas via props(options).
  */
 class SelectInput extends Component {
 
