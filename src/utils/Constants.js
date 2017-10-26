@@ -30,7 +30,6 @@ export const ClubTypes = Object.freeze({
     VISITOR_CLUB: "VISITOR_CLUB"
 });
 
-
 /**
  * Define as cores do cartão que um jogador pode receber.
  * @type {Object}

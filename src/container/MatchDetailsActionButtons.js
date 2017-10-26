@@ -16,7 +16,7 @@ class MatchDetailsActionButtons extends Component {
         this.showNewGoalModal = this.showNewGoalModal.bind(this);
         this.showNewCardModal = this.showNewCardModal.bind(this);
         this.showNewSubstitutionModal = this.showNewSubstitutionModal.bind(this);
-        this.setsModalDefaultProps = this.setsModalDefaultProps.bind(this);
+        this.getModalDefaultProps = this.getModalDefaultProps.bind(this);
         this.setPlayersStatus = this.setPlayersStatus.bind(this);
         this.setStatusFromPlayersList = this.setStatusFromPlayersList.bind(this);
         this.getPlayersArrayToSelectInput = this.getPlayersArrayToSelectInput.bind(this);
@@ -31,7 +31,7 @@ class MatchDetailsActionButtons extends Component {
         const players = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
 
         /*Define as propriedades do Modal*/
-        const modalProps = this.setsModalDefaultProps(clubType);
+        const modalProps = this.getModalDefaultProps(clubType);
         modalProps["players"] = players;
         this.props.showModal(ModalTypes.NEW_GOAL_MODAL, modalProps);
     }
@@ -47,7 +47,7 @@ class MatchDetailsActionButtons extends Component {
         const notAvailablePlayers = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.NOT_AVAILABLE);
 
         /*Define as propriedades do Modal*/
-        const modalProps = this.setsModalDefaultProps(clubType);
+        const modalProps = this.getModalDefaultProps(clubType);
         modalProps["players"] = inGamePlayers.concat(availablePlayers).concat(notAvailablePlayers);
         this.props.showModal(ModalTypes.NEW_CARD_MODAL, modalProps);
     }
@@ -64,19 +64,19 @@ class MatchDetailsActionButtons extends Component {
          */
         const availablePlayers = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.AVAILABLE);
 
-        const modalProps = this.setsModalDefaultProps(clubType);
+        const modalProps = this.getModalDefaultProps(clubType);
         modalProps["playersWhoCanLeave"] = playersInMatch;
         modalProps["playersWhoCanEnter"] = availablePlayers;
         this.props.showModal(ModalTypes.NEW_SUBSTITUTION_MODAL, modalProps);
     }
 
     /**
-     * Atribui as propriedades comuns a todos os Modals.
+     * Retorna as propriedades comuns a todos os Modals.
      *
      * @param clubType Indica sobre qual clube o Modal atuará.
      * @returns {{}} Objeto com as propriedades default.
      */
-    setsModalDefaultProps(clubType) {
+    getModalDefaultProps(clubType) {
         const modalProps = {};
         modalProps["clubType"] = clubType;
         modalProps["matchId"] = this.props.matchToDetail.identificator;

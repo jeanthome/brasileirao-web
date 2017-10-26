@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {hideModal} from "../actions/ModalActions";
-import {fetchMatch} from "../actions/MatchActions";
+import {fetchMatch, insertSubstitution} from "../actions/MatchActions";
 import SelectInput from "../components/SelectInput";
 import {Field, reduxForm} from "redux-form";
 import {Button, Col, FormGroup, Modal, Radio, Row} from "react-bootstrap";
@@ -16,11 +16,14 @@ class NewSubstitutionModal extends Component {
 
 
     onSubmit(values) {
-        console.log("onSubmit");
+
         values["clubType"] = this.props.clubType;
         values["matchId"] = this.props.matchId;
         values.half = values.half ? values.half : HalfEnum.FIRST_HALF;
-        console.log(values);
+        this.props.insertSubstitution(values, () => {
+            this.props.fetchMatch(this.props.matchId);
+            this.props.hideModal();
+        });
     }
 
     render() {
@@ -140,8 +143,6 @@ class NewSubstitutionModal extends Component {
 
 function validate(values) {
 
-    console.log(values);
-
     const errors = {};
 
     if (!values.minute || !isInt(values.minute)) {
@@ -163,5 +164,5 @@ export default reduxForm({
     validate,
     form: 'newSubstitutionModal'
 })(
-    connect(null, {hideModal, fetchMatch})(NewSubstitutionModal)
+    connect(null, {hideModal, fetchMatch, insertSubstitution})(NewSubstitutionModal)
 );

@@ -1,4 +1,4 @@
-import {FETCH_MATCHES, FETCH_MATCH, FETCH_GOAL_TYPE, INSERT_GOAL, INSERT_CARD} from "../actions/MatchActions";
+import {FETCH_MATCHES, FETCH_MATCH, FETCH_GOAL_TYPE, INSERT_GOAL, INSERT_CARD, INSERT_SUBSTITUTION} from "../actions/MatchActions";
 import _ from 'lodash';
 
 export default function (state = {}, action) {
@@ -15,9 +15,8 @@ export default function (state = {}, action) {
             return {...state, ["goalType"]: action.payload.data};
 
         case INSERT_GOAL:
-            return state;
-
         case INSERT_CARD:
+        case INSERT_SUBSTITUTION:
             return state;
 
         default:
