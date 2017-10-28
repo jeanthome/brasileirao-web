@@ -38,7 +38,7 @@ export function fetchGoalType() {
 
 export function insertGoal(values, callback) {
 
-    const request = axios.put(`${ROOT_URL}/matches/goals`, values).then(() => callback());
+    const request = axios.put(`${ROOT_URL}/matches/${values.matchId}/goals`, values).then(() => callback());
 
     return {
         type: INSERT_GOAL,
@@ -48,7 +48,7 @@ export function insertGoal(values, callback) {
 
 export function insertCard(values, callback) {
 
-    const request = axios.put(`${ROOT_URL}/matches/cards`, values).then(() => callback());
+    const request = axios.put(`${ROOT_URL}/matches/${values.matchId}/cards`, values).then(() => callback());
 
     return {
         type: INSERT_CARD,
@@ -58,8 +58,8 @@ export function insertCard(values, callback) {
 
 export function insertSubstitution(values, callback) {
 
-    const request = axios.put(`${ROOT_URL}/matches/${values.matchId}/substitutions`,
-        values).then(() => callback());
+    const request = axios.put(`${ROOT_URL}/matches/${values.matchId}/substitutions`, values)
+        .then(() => callback());
 
     return {
         type: INSERT_SUBSTITUTION,

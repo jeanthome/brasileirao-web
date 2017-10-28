@@ -30,7 +30,7 @@ class MatchDetailsActionButtons extends Component {
          */
         const players = this.getPlayersArrayToSelectInput(clubType, PlayerStatus.IN_GAME);
 
-        /*Define as propriedades do Modal*/
+        /* Obtém as propriedades básicas do Modal. */
         const modalProps = this.getModalDefaultProps(clubType);
         modalProps["players"] = players;
         this.props.showModal(ModalTypes.NEW_GOAL_MODAL, modalProps);
