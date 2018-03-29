@@ -42,7 +42,7 @@ possível visualizar todas as partidas cadastradas em uma rodada específica, co
 ***
 
 ### Editar partidas
-Ao selecionar uma partida da lista anterior, a seguinte págian de detalhes é exibida:
+Ao selecionar uma partida da lista anterior, a seguinte página de detalhes é exibida:
 
 <p align="center">
   <img width="900" height="751" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/detalhe-partida.png">
