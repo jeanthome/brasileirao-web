@@ -43,7 +43,7 @@ class NewPlayerForm extends Component {
          'SelectInput' */
         const clubList = _.map(this.props.clubs, club => {
             return {
-                value: club.identificator,
+                value: club.identifier,
                 label: club.name
             }
         })

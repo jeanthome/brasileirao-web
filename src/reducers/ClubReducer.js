@@ -4,7 +4,7 @@ import {FETCH_CLUBS} from '../actions/ClubActions';
 export default function (state = {}, action) {
     switch (action.type){
         case FETCH_CLUBS:
-            return _.mapKeys(action.payload.data, 'identificator');
+            return _.mapKeys(action.payload.data, 'identifier');
 
         default:
             return state;

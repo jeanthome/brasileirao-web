@@ -18,7 +18,7 @@ class ClubList extends Component {
     renderClubCard(club) {
         /*TODO Inserir link correto*/
         return (
-            <li key={club.identificator}>
+            <li key={club.identifier}>
                 <Link to="/classificacao">
                     <ClubCard club={club}/>
                 </Link>
