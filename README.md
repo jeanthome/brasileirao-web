@@ -23,11 +23,12 @@ capaz de:
 ## O que já está disponível?
 
 #### Cadastro de partidas:
-<kbd>
-  <img src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/cadastro-partida.png">
-</kbd>
+<p align="center">
+  <img width="800" height="396" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/cadastro-partida.png">
+</p>
 
 #### Listar as partidas de uma determinada rodada:
-<kbd>
-  <img src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/lista-jogos.png">
-</kbd>
+<p align="center">
+  <img width="500" height="738" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/lista-jogos.png">
+</p>   
+
