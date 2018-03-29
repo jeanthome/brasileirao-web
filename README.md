@@ -28,6 +28,7 @@ A segunda opção revela o seguinte formulário:
 <p align="center">
   <img width="800" height="396" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/cadastro-partida.png">
 </p>
+
 ***
 
 ### Listar as partidas de uma determinada rodada:
@@ -36,6 +37,34 @@ possível visualizar todas as partidas cadastradas em uma rodada específica, co
 
 <p align="center">
   <img width="500" height="632" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/lista-jogos.png">
-</p>   
+</p>
+
 ***
 
+### Editar partidas
+Ao selecionar uma partida da lista anterior, a seguinte págian de detalhes é exibida:
+
+<p align="center">
+  <img width="900" height="751" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/detalhe-partida.png">
+</p>
+
+Na página de detalhes, além de poder visualizar os jogadores relacionados (titulares e reservas), há
+também um menu de Ações associado a cada uma das duas equipes da partida, conforme ilustrado abaixo:
+<p align="center">
+  <img width="562" height="327" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/config-buttons.png">
+</p>
+
+O item "Inserir gol" (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações do gol:
+<p align="center">
+  <img width="598" height="411" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/add-goal.png">
+</p>
+
+O item "Inserir cartão" (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações do cartão:
+<p align="center">
+  <img width="598" height="362" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/add-card.png">
+</p>
+
+Por fim, o item "Inserir substituição" (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações da substituição:
+<p align="center">
+  <img width="598" height="250" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/add-substitution.png">
+</p>
