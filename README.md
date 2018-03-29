@@ -22,13 +22,20 @@ capaz de:
 
 ## O que já está disponível?
 
-#### Cadastro de partidas:
+### Cadastro de partidas:
+No canto superior direito, há um ComboBox "Cadastro" com dois itens, "Jogador" e "Partida". 
+A segunda opção revela o seguinte formulário:
 <p align="center">
   <img width="800" height="396" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/cadastro-partida.png">
 </p>
+***
 
-#### Listar as partidas de uma determinada rodada:
+### Listar as partidas de uma determinada rodada:
+Após serem cadastradas, as partidas podem ser listadas acessando o item "Lista de Jogos", no menu superior. Nessa página é 
+possível visualizar todas as partidas cadastradas em uma rodada específica, como mostrado abaixo:
+
 <p align="center">
-  <img width="500" height="738" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/lista-jogos.png">
+  <img width="500" height="632" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/lista-jogos.png">
 </p>   
+***
 
