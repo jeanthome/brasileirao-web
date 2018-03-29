@@ -24,4 +24,4 @@ capaz de:
 
 #### Cadastro de partidas:
 
-![N|Solid](https://github.com/jeanthome/brasileirao-web/tree/master/screenshot/cadastro-partida.png)
+![N|Solid](https://github.com/jeanthome/brasileirao-web/blob/master/screenshot/cadastro-partida.png)
