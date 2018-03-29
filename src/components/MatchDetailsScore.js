@@ -24,7 +24,7 @@ class MatchDetailsScore extends Component {
                             <span className="home-club-name">{homeClub.name}</span>
                         </Col>
                         <Col md={3} className="club-badge">
-                            <img src={`${ROOT_URL}/clubs/${homeClub.identificator}/badge`}/>
+                            <img src={`${ROOT_URL}/clubs/${homeClub.identifier}/badge`}/>
                         </Col>
 
                     </Col>
@@ -46,7 +46,7 @@ class MatchDetailsScore extends Component {
                     <Col md={5} className="score-item">
 
                         <Col md={3} className="club-badge">
-                            <img src={`${ROOT_URL}/clubs/${visitorClub.identificator}/badge`}/>
+                            <img src={`${ROOT_URL}/clubs/${visitorClub.identifier}/badge`}/>
                         </Col>
                         <Col md={9} >
                             <span className="visitor-club-name">{visitorClub.name}</span>

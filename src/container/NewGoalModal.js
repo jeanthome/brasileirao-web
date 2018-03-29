@@ -72,7 +72,7 @@ class NewGoalModal extends Component {
                                             <Col md={5} className="modal-goal-item">
                                                 <Field
                                                     placeholder="Minuto"
-                                                    name="goalMinute"
+                                                    name="minute"
                                                     component={this.renderField}
                                                 />
                                             </Col>

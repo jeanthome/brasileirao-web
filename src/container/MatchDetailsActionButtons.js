@@ -79,7 +79,7 @@ class MatchDetailsActionButtons extends Component {
     getModalDefaultProps(clubType) {
         const modalProps = {};
         modalProps["clubType"] = clubType;
-        modalProps["matchId"] = this.props.matchToDetail.identificator;
+        modalProps["matchId"] = this.props.matchToDetail.identifier;
         return modalProps;
     }
 

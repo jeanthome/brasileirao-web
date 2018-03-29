@@ -36,7 +36,7 @@ class MatchCard extends Component {
                                 {homeClub.abbreviation}
                             </div>
                             <div className="match-card-club-badge">
-                                <img src={`${ROOT_URL}/clubs/${homeClub.identificator}/badge`}/>
+                                <img src={`${ROOT_URL}/clubs/${homeClub.identifier}/badge`}/>
                             </div>
                         </div>
 
@@ -57,7 +57,7 @@ class MatchCard extends Component {
                         <div className="match-card-club-item">
                             <div className="match-card-club-badge">
                                 <img
-                                    src={`${ROOT_URL}/clubs/${visitorClub.identificator}/badge`}/>
+                                    src={`${ROOT_URL}/clubs/${visitorClub.identifier}/badge`}/>
                             </div>
                             <div
                                 className="match-card-club-abbreviation match-card-club-abbreviation-visitor">
