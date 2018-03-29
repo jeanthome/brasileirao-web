@@ -23,7 +23,7 @@ capaz de:
 ## O que já está disponível?
 
 ### Cadastro de partidas:
-No canto superior direito, há um ComboBox "Cadastro" com dois itens, "Jogador" e "Partida". 
+No canto superior direito, há um ComboBox **Cadastro** com dois itens, **Jogador** e **Partida**. 
 A segunda opção revela o seguinte formulário:
 <p align="center">
   <img width="800" height="396" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/cadastro-partida.png">
@@ -32,7 +32,7 @@ A segunda opção revela o seguinte formulário:
 ***
 
 ### Listar as partidas de uma determinada rodada:
-Após serem cadastradas, as partidas podem ser listadas acessando o item "Lista de Jogos", no menu superior. Nessa página é 
+Após serem cadastradas, as partidas podem ser listadas acessando o item **Lista de Jogos**, no menu superior. Nessa página é 
 possível visualizar todas as partidas cadastradas em uma rodada específica, como mostrado abaixo:
 
 <p align="center">
@@ -41,7 +41,7 @@ possível visualizar todas as partidas cadastradas em uma rodada específica, co
 
 ***
 
-### Editar partidas
+### Editar partidas:
 Ao selecionar uma partida da lista anterior, a seguinte página de detalhes é exibida:
 
 <p align="center">
@@ -54,17 +54,17 @@ também um menu de Ações associado a cada uma das duas equipes da partida, con
   <img width="562" height="327" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/config-buttons.png">
 </p>
 
-O item "Inserir gol" (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações do gol:
+O item **Inserir gol** (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações do gol:
 <p align="center">
   <img width="598" height="411" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/add-goal.png">
 </p>
 
-O item "Inserir cartão" (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações do cartão:
+O item **Inserir cartão** (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações do cartão:
 <p align="center">
   <img width="598" height="362" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/add-card.png">
 </p>
 
-Por fim, o item "Inserir substituição" (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações da substituição:
+Por fim, o item **Inserir substituição** (autoexplicativo) exibe um Modal, onde podem ser atribuídas as informações da substituição:
 <p align="center">
   <img width="598" height="250" src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/add-substitution.png">
 </p>
