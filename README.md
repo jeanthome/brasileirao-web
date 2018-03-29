@@ -24,10 +24,10 @@ capaz de:
 
 #### Cadastro de partidas:
 <kbd>
-  <img src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshot/cadastro-partida.png">
+  <img src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/cadastro-partida.png">
 </kbd>
 
 #### Listar as partidas de uma determinada rodada:
 <kbd>
-  <img src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshot/lista-jogos.png">
+  <img src="https://github.com/jeanthome/brasileirao-web/blob/master/screenshots/lista-jogos.png">
 </kbd>
